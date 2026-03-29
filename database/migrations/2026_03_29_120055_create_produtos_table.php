@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('usuario_id')->constrained('usuarios', 'id_usuario');
             $table->foreignId('modelo_id')->constrained('modelos', 'id_modelo');
             $table->string('nome');
-            $table->string('imagem');
             $table->text('descricao')->nullable();
             $table->enum('faixa_etaria', ['infantil', 'juvenil', 'adulto']);
             $table->enum('genero', ['masculino', 'feminino', 'unissex']);

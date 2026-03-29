@@ -17,6 +17,7 @@ class VariacaoProduto extends Model
         'produto_id',
         'cor_id',
         'tamanho_id',
+        'imagem',
         'estoque',
         'preco',
     ];

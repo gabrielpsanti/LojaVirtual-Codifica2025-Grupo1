@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('produto_id')->constrained('produtos', 'id_produto');
             $table->foreignId('cor_id')->constrained('cores', 'id_cor');
             $table->foreignId('tamanho_id')->constrained('tamanhos', 'id_tamanho');
+            $table->string('imagem');
             $table->integer('estoque');
             $table->decimal('preco', 10, 2);
             $table->timestamps();
