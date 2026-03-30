@@ -1,10 +1,21 @@
 <?php
+namespace Database\Seeders;
 
-namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Tamanho extends Model
-{
-    //
+
+use Illuminate\Database\Seeder;
+use App\Models\Tamanho;
+
+
+
+
+
+
+class TamanhoSeeder extends Seeder {
+public function run(): void {
+Tamanho::create(['nome' => 'P']);
+Tamanho::create(['nome' => 'M']);
+Tamanho::create(['nome' => 'G']);
+}
 }

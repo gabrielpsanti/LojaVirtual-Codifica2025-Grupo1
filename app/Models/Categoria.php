@@ -1,10 +1,20 @@
 <?php
+namespace Database\Seeders;
 
-namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
-{
-    //
+
+use Illuminate\Database\Seeder;
+use App\Models\Categoria;
+
+
+
+
+
+class CategoriaSeeder extends Seeder {
+public function run(): void {
+Categoria::create(['nome' => 'Camisetas']);
+Categoria::create(['nome' => 'Calças']);
+Categoria::create(['nome' => 'Vestidos']);
+}
 }
