@@ -22,6 +22,10 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('cliente')
                 ->name('cliente.')
                 ->group(base_path('routes/cliente/web.php'));
+
+            Route::middleware(['web'])
+                ->name('publico.')
+                ->group(base_path('routes/publico/web.php'));
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {
