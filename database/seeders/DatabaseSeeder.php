@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsuarioAdminSeeder::class,
+            CategoriaSeeder::class,
+            TamanhoSeeder::class,
         ]);
     }
 }
