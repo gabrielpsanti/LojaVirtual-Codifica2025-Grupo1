@@ -20,6 +20,22 @@ class Usuario extends Authenticatable
         'flag_admin'
     ];
 
+    protected $hidden = [
+        'senha',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'flag_admin' => 'boolean',
+        ];
+    }
+    
+    public function getAuthPassword(): string
+    {
+        return $this->senha;
+    }
+
     public function produtos()
     {
         return $this->hasMany(Produto::class, 'usuario_id', 'id_usuario');
