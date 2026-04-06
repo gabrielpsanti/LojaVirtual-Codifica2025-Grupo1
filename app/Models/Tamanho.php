@@ -1,21 +1,24 @@
 <?php
-namespace Database\Seeders;
 
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
+class Tamanho extends Model
+{
+    use HasFactory, SoftDeletes;
 
-use Illuminate\Database\Seeder;
-use App\Models\Tamanho;
+    protected $table = 'tamanhos';
+    protected $primaryKey = 'id_tamanho';
 
+    protected $fillable = [
+        'nome',
+    ];
 
-
-
-
-
-class TamanhoSeeder extends Seeder {
-public function run(): void {
-Tamanho::create(['nome' => 'P']);
-Tamanho::create(['nome' => 'M']);
-Tamanho::create(['nome' => 'G']);
-}
+    public function variacoesProdutos()
+    {
+        return $this->hasMany(VariacaoProduto::class, 'tamanho_id', 'id_tamanho');
+    }
 }
