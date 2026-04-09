@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
             UsuarioAdminSeeder::class,
             CategoriaSeeder::class,
             TamanhoSeeder::class,
+            CoresSeeder::class,
         ]);
     }
 }
