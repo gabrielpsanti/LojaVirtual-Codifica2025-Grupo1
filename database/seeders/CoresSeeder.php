@@ -25,7 +25,8 @@ class CoresSeeder extends Seeder
             ['nome' => 'Amarelo Mostarda'],  
             ['nome' => 'Vinho'],            
             ['nome' => 'Bege Areia'],        
-            ['nome' => 'Azul Sereno'],      
+            ['nome' => 'Azul Sereno'],   
+            ['nome' => 'Vermelho'],    
         ];
 
         foreach ($cores as $cor) {
