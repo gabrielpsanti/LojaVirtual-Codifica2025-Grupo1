@@ -13,7 +13,7 @@ use App\Models\Categoria;
 
 class CategoriaSeeder extends Seeder {
 public function run(): void {
-Categoria::create(['nome' => 'Infantil']);
+Categoria::create(['nome' => 'Suéteres']);
 Categoria::create(['nome' => 'Camisetas']);
 Categoria::create(['nome' => 'Calças']);
 Categoria::create(['nome' => 'Vestidos']);
