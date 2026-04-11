@@ -9,8 +9,9 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-400 flex items-center justify-center min-h-screen">
+<body class="bg-slate-300 flex items-center justify-center min-h-screen">
     <main class="w-full max-w-sm p-4">
+
         <div class="bg-white p-8 rounded-lg shadow-lg">
             <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Login</h1>
 
@@ -35,7 +36,8 @@
                         class="border border-gray-300 rounded-md p-2">
                 </div>
 
-                <button type="submit" class="bg-blue-600 text-white font-semibold py-2 rounded-md mt-2 cursor-pointer">
+                <button type="submit"
+                    class="bg-slate-600 text-white font-semibold py-2 rounded-md mt-2 cursor-pointer hover:bg-slate-500">
                     Entrar
                 </button>
             </form>
