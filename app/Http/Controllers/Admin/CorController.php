@@ -3,64 +3,61 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CorRequest;
 use App\Models\Cor;
-use Illuminate\Http\Request;
+use App\Repositories\CorRepository;
 
 class CorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(
+        private CorRepository $corRepository
+    ) {}
+
     public function index()
     {
-        //
+        $cores = $this->corRepository->paginateOrderedByName();
+
+        return view('pages.admin.cores.index', compact('cores'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('pages.admin.cores.criar');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(CorRequest $request)
     {
-        //
+        $dados = $request->validated();
+
+        $this->corRepository->create($dados);
+
+        return redirect()
+            ->route('admin.cores.index')
+            ->with('success', 'Cor cadastrada com sucesso.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cor $cor)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Cor $cor)
     {
-        //
+        return view('pages.admin.cores.editar', compact('cor'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cor $cor)
+    public function update(CorRequest $request, Cor $cor)
     {
-        //
+        $dados = $request->validated();
+
+        $this->corRepository->update($cor, $dados);
+
+        return redirect()
+            ->route('admin.cores.index')
+            ->with('success', 'Cor atualizada com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Cor $cor)
     {
-        //
+        $this->corRepository->delete($cor);
+
+        return redirect()
+            ->route('admin.cores.index')
+            ->with('success', 'Cor removida com sucesso.');
     }
 }

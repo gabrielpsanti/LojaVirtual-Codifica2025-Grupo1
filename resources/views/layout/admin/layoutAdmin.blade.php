@@ -19,8 +19,7 @@
             </div>
 
             <nav class="flex flex-col items-center gap-4 px-4 py-6">
-
-                <a href=""
+                <a href="{{ route('admin.dashboard') }}"
                     class="border border-slate-600 w-40 rounded-2xl px-4 py-2 hover:bg-slate-700 hover:border-slate-100">
                     <span class="text-lg font-semibold">Dashboard</span>
                 </a>
@@ -50,7 +49,7 @@
                     <span class="text-lg font-semibold">Tamanhos</span>
                 </a>
 
-                <a href=""
+                <a href="{{ route('admin.cores.index') }}"
                     class="border border-slate-600 w-40 rounded-2xl px-4 py-2 hover:bg-slate-700 hover:border-slate-100">
                     <span class="text-lg font-semibold">Cores</span>
                 </a>
