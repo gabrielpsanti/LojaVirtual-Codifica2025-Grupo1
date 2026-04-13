@@ -3,64 +3,61 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TamanhoRequest;
 use App\Models\Tamanho;
-use Illuminate\Http\Request;
+use App\Repositories\TamanhoRepository;
 
 class TamanhoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(
+        private TamanhoRepository $tamanhoRepository
+    ) {}
+
     public function index()
     {
-        //
+        $tamanhos = $this->tamanhoRepository->paginateOrderedByName();
+
+        return view('pages.admin.tamanhos.index', compact('tamanhos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('pages.admin.tamanhos.criar');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(TamanhoRequest $request)
     {
-        //
+        $dados = $request->validated();
+
+        $this->tamanhoRepository->create($dados);
+
+        return redirect()
+            ->route('admin.tamanhos.index')
+            ->with('success', 'Tamanho cadastrado com sucesso.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tamanho $tamanho)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Tamanho $tamanho)
     {
-        //
+        return view('pages.admin.tamanhos.editar', compact('tamanho'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Tamanho $tamanho)
+    public function update(TamanhoRequest $request, Tamanho $tamanho)
     {
-        //
+        $dados = $request->validated();
+
+        $this->tamanhoRepository->update($tamanho, $dados);
+
+        return redirect()
+            ->route('admin.tamanhos.index')
+            ->with('success', 'Tamanho atualizado com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Tamanho $tamanho)
     {
-        //
+        $this->tamanhoRepository->delete($tamanho);
+
+        return redirect()
+            ->route('admin.tamanhos.index')
+            ->with('success', 'Tamanho removido com sucesso.');
     }
 }
