@@ -3,64 +3,61 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CategoriaRequest;
 use App\Models\Categoria;
-use Illuminate\Http\Request;
+use App\Repositories\CategoriaRepository;
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(
+        private CategoriaRepository $categoriaRepository
+    ) {}
+
     public function index()
     {
-        //
+        $categorias = $this->categoriaRepository->paginateOrderedByName();
+
+        return view('pages.admin.categorias.index', compact('categorias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('pages.admin.categorias.criar');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(CategoriaRequest $request)
     {
-        //
+        $dados = $request->validated();
+
+        $this->categoriaRepository->create($dados);
+
+        return redirect()
+            ->route('admin.categorias.index')
+            ->with('success', 'Categoria cadastrada com sucesso.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Categoria $categoria)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Categoria $categoria)
     {
-        //
+        return view('pages.admin.categorias.editar', compact('categoria'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Categoria $categoria)
+    public function update(CategoriaRequest $request, Categoria $categoria)
     {
-        //
+        $dados = $request->validated();
+
+        $this->categoriaRepository->update($categoria, $dados);
+
+        return redirect()
+            ->route('admin.categorias.index')
+            ->with('success', 'Categoria atualizada com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Categoria $categoria)
     {
-        //
+        $this->categoriaRepository->delete($categoria);
+
+        return redirect()
+            ->route('admin.categorias.index')
+            ->with('success', 'Categoria removida com sucesso.');
     }
 }

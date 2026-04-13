@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\CorController;
 use App\Http\Controllers\Admin\LoginAdmin;
 use App\Http\Controllers\Admin\TamanhoController;
@@ -20,5 +21,10 @@ Route::middleware(['is_admin'])->group(function () {
     //CRUD TAMANHOS
     Route::resource('/tamanhos', TamanhoController::class)
         ->parameters(['tamanhos' => 'tamanho'])
+        ->except('show');
+
+    //CRUD CATEGORIAS
+    Route::resource('/categorias', CategoriaController::class)
+        ->parameters(['categorias' => 'categoria'])
         ->except('show');
 });

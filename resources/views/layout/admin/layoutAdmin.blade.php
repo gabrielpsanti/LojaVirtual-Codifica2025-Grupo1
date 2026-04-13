@@ -34,7 +34,7 @@
                     <span class="text-lg font-semibold">Produtos</span>
                 </a>
 
-                <a href=""
+                <a href="{{ route('admin.categorias.index') }}"
                     class="border border-slate-600 w-40 rounded-2xl px-4 py-2 hover:bg-slate-700 hover:border-slate-100">
                     <span class="text-lg font-semibold">Categorias</span>
                 </a>
