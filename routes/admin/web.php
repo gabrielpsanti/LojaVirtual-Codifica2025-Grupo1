@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CorController;
 use App\Http\Controllers\Admin\LoginAdmin;
+use App\Http\Controllers\Admin\TamanhoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginAdmin::class, 'showLoginForm'])->name('login.form');
@@ -14,5 +15,10 @@ Route::middleware(['is_admin'])->group(function () {
     //CRUD CORES
     Route::resource('/cores', CorController::class)
         ->parameters(['cores' => 'cor'])
+        ->except('show');
+
+    //CRUD TAMANHOS
+    Route::resource('/tamanhos', TamanhoController::class)
+        ->parameters(['tamanhos' => 'tamanho'])
         ->except('show');
 });
