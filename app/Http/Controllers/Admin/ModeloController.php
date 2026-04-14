@@ -3,64 +3,65 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ModeloRequest;
 use App\Models\Modelo;
-use Illuminate\Http\Request;
+use App\Repositories\ModeloRepository;
 
 class ModeloController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(
+        private ModeloRepository $modeloRepository
+    ) {}
+
     public function index()
     {
-        //
+        $modelos = $this->modeloRepository->paginateOrderedByName();
+
+        return view('pages.admin.modelos.index', compact('modelos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $categorias = $this->modeloRepository->getCategorias();
+
+        return view('pages.admin.modelos.criar', compact('categorias'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(ModeloRequest $request)
     {
-        //
+        $dados = $request->validated();
+
+        $this->modeloRepository->create($dados);
+
+        return redirect()
+            ->route('admin.modelos.index')
+            ->with('success', 'Modelo cadastrado com sucesso.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Modelo $modelo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Modelo $modelo)
     {
-        //
+        $categorias = $this->modeloRepository->getCategorias();
+
+        return view('pages.admin.modelos.editar', compact('modelo', 'categorias'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Modelo $modelo)
+    public function update(ModeloRequest $request, Modelo $modelo)
     {
-        //
+        $dados = $request->validated();
+
+        $this->modeloRepository->update($modelo, $dados);
+
+        return redirect()
+            ->route('admin.modelos.index')
+            ->with('success', 'Modelo atualizado com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Modelo $modelo)
     {
-        //
+        $this->modeloRepository->delete($modelo);
+
+        return redirect()
+            ->route('admin.modelos.index')
+            ->with('success', 'Modelo removido com sucesso.');
     }
 }
