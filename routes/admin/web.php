@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\CorController;
 use App\Http\Controllers\Admin\LoginAdmin;
 use App\Http\Controllers\Admin\ModeloController;
+use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\Admin\TamanhoController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,5 +33,10 @@ Route::middleware(['is_admin'])->group(function () {
     //CRUD MODELOS
     Route::resource('/modelos', ModeloController::class)
         ->parameters(['modelos' => 'modelo'])
+        ->except('show');
+
+    //CRUD PRODUTOS
+    Route::resource('/produtos', ProdutoController::class)
+        ->parameters(['produtos' => 'produto'])
         ->except('show');
 });

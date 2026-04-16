@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('modelo_id')->constrained('modelos', 'id_modelo');
             $table->string('nome');
             $table->text('descricao')->nullable();
-            $table->enum('faixa_etaria', ['infantil', 'juvenil', 'adulto']);
-            $table->enum('genero', ['masculino', 'feminino', 'unissex']);
+            $table->unsignedTinyInteger('faixa_etaria');
+            $table->unsignedTinyInteger('genero');
             $table->timestamps();
             $table->softDeletes();
         });
