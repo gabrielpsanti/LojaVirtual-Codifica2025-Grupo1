@@ -3,64 +3,72 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ProdutoRequest;
 use App\Models\Produto;
-use Illuminate\Http\Request;
+use App\Repositories\ProdutoRepository;
+use App\Enums\FaixaEtariaProduto;
+use App\Enums\GeneroProduto;
 
 class ProdutoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(
+        private ProdutoRepository $produtoRepository
+    ) {}
+
     public function index()
     {
-        //
+        $produtos = $this->produtoRepository->paginateOrderedByName();
+
+        return view('pages.admin.produtos.index', compact('produtos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $modelos = $this->produtoRepository->getModelos();
+        $faixasEtarias = FaixaEtariaProduto::cases();
+        $generos = GeneroProduto::cases();
+
+        return view('pages.admin.produtos.criar', compact('modelos', 'faixasEtarias', 'generos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
-        //
+        $dados = $request->validated();
+        $dados['usuario_id'] = auth()->user()->id_usuario;
+
+        $this->produtoRepository->create($dados);
+
+        return redirect()
+            ->route('admin.produtos.index')
+            ->with('success', 'Produto cadastrado com sucesso.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Produto $produto)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Produto $produto)
     {
-        //
+        $modelos = $this->produtoRepository->getModelos();
+        $faixasEtarias = FaixaEtariaProduto::cases();
+        $generos = GeneroProduto::cases();
+
+        return view('pages.admin.produtos.editar', compact('produto', 'modelos', 'faixasEtarias', 'generos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Produto $produto)
+    public function update(ProdutoRequest $request, Produto $produto)
     {
-        //
+        $dados = $request->validated();
+
+        $this->produtoRepository->update($produto, $dados);
+
+        return redirect()
+            ->route('admin.produtos.index')
+            ->with('success', 'Produto atualizado com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Produto $produto)
     {
-        //
+        $this->produtoRepository->delete($produto);
+
+        return redirect()
+            ->route('admin.produtos.index')
+            ->with('success', 'Produto removido com sucesso.');
     }
 }
