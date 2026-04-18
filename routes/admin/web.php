@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\LoginAdmin;
 use App\Http\Controllers\Admin\ModeloController;
 use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\Admin\TamanhoController;
+use App\Http\Controllers\Admin\VariacaoProdutoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginAdmin::class, 'showLoginForm'])->name('login.form');
@@ -38,5 +39,11 @@ Route::middleware(['is_admin'])->group(function () {
     //CRUD PRODUTOS
     Route::resource('/produtos', ProdutoController::class)
         ->parameters(['produtos' => 'produto'])
+        ->except('show');
+
+    //CRUD VARIACOES PRODUTOS
+    Route::resource('/variacao-produtos', VariacaoProdutoController::class)
+        ->names('variacao_produtos')
+        ->parameters(['variacao-produtos' => 'variacaoProduto'])
         ->except('show');
 });
