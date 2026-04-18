@@ -3,64 +3,69 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\VariacaoProdutoRequest;
 use App\Models\VariacaoProduto;
-use Illuminate\Http\Request;
+use App\Repositories\VariacaoProdutoRepository;
 
 class VariacaoProdutoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(
+        private VariacaoProdutoRepository $variacaoProdutoRepository
+    ) {}
+
     public function index()
     {
-        //
+        $variacoesProdutos = $this->variacaoProdutoRepository->paginateOrderedById();
+
+        return view('pages.admin.variacoes_produtos.index', compact('variacoesProdutos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $produtos = $this->variacaoProdutoRepository->getProdutos();
+        $cores = $this->variacaoProdutoRepository->getCores();
+        $tamanhos = $this->variacaoProdutoRepository->getTamanhos();
+
+        return view('pages.admin.variacoes_produtos.criar', compact('produtos', 'cores', 'tamanhos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(VariacaoProdutoRequest $request)
     {
-        //
+        $dados = $request->validated();
+
+        $this->variacaoProdutoRepository->create($dados);
+
+        return redirect()
+            ->route('admin.variacao_produtos.index')
+            ->with('success', 'Variação de produto cadastrada com sucesso.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(VariacaoProduto $variacaoProduto)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(VariacaoProduto $variacaoProduto)
     {
-        //
+        $produtos = $this->variacaoProdutoRepository->getProdutos();
+        $cores = $this->variacaoProdutoRepository->getCores();
+        $tamanhos = $this->variacaoProdutoRepository->getTamanhos();
+
+        return view('pages.admin.variacoes_produtos.editar', compact('variacaoProduto', 'produtos', 'cores', 'tamanhos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, VariacaoProduto $variacaoProduto)
+    public function update(VariacaoProdutoRequest $request, VariacaoProduto $variacaoProduto)
     {
-        //
+        $dados = $request->validated();
+
+        $this->variacaoProdutoRepository->update($variacaoProduto, $dados);
+
+        return redirect()
+            ->route('admin.variacao_produtos.index')
+            ->with('success', 'Variação de produto atualizada com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(VariacaoProduto $variacaoProduto)
     {
-        //
+        $this->variacaoProdutoRepository->delete($variacaoProduto);
+
+        return redirect()
+            ->route('admin.variacao_produtos.index')
+            ->with('success', 'Variação de produto removida com sucesso.');
     }
 }

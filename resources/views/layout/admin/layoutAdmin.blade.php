@@ -24,7 +24,7 @@
                     <span class="text-lg font-semibold">Dashboard</span>
                 </a>
 
-                <a href=""
+                <a href="{{ route('admin.variacao_produtos.index') }}"
                     class="border border-slate-600 w-40 rounded-2xl px-4 py-2 hover:bg-slate-700 hover:border-slate-100">
                     <span class="text-lg font-semibold">Variações</span>
                 </a>
