@@ -19,6 +19,7 @@ class Produto extends Model
         'usuario_id',
         'modelo_id',
         'nome',
+        'imagem_apresentacao',
         'descricao',
         'faixa_etaria',
         'genero',
