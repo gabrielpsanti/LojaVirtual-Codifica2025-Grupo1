@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
             TamanhoSeeder::class,
             ModeloSeeders::class,
             CoresSeeder::class,
+            ProdutoSeeder::class,
         ]);
     }
 }
