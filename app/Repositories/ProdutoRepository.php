@@ -9,6 +9,16 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ProdutoRepository
 {
+    public function home(int $limit = 12): Collection
+    {
+        return Produto::query()
+            ->with(['modelo.categoria'])
+            ->withMin('variacoes', 'preco')
+            ->latest()
+            ->limit($limit)
+            ->get();
+    }
+
     public function paginateOrderedByName(int $qnt = 10): LengthAwarePaginator
     {
         return Produto::query()
