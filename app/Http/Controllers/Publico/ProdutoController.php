@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Publico;
 
 use App\Http\Controllers\Controller;
 use App\Models\Produto;
+use App\Enums\GeneroProduto;
 
 class ProdutoController extends Controller
 {
+    public function feminino()
+    {
+        $produtos = Produto::where('genero', GeneroProduto::FEMININO->value)->get();
+        return view('pages.publico.produtos.feminino', compact('produtos'));
+    }
+
     public function variacoes(Produto $produto)
     {
         $variacoes = $produto->variacoes()

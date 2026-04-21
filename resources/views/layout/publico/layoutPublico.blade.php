@@ -10,26 +10,31 @@
 </head>
 
 <body class="bg-slate-100 text-slate-900">
-    <header class="border-b shadow-sm">
-        <div class="mx-auto flex max-w-6xl justify-between p-2">
 
-            <div class="flex items-center gap-3">
-                <div>LOGO</div>
-                <div>Masculino</div>
-                <div>Feminino</div>
-                <div>Kids</div>
-            </div>
+<header class="border-b shadow-sm">
+    <div class="mx-auto flex max-w-6xl justify-between p-2">
 
-            <a href="">
-                Login
+        <div class="flex items-center gap-5">
+            <div class="font-bold text-lg">LOGO</div>
+
+            <a href="#" class="hover:underline">Masculino</a>
+
+            <a href="/produtos/femininos" class="hover:underline text-pink-600 font-semibold">
+                Feminino
             </a>
 
+            <a href="#" class="hover:underline">Kids</a>
         </div>
-    </header>
 
-    <main class="mx-auto max-w-[90%] py-10">
-        @yield('content')
-    </main>
+        <a href="#" class="hover:underline">Login</a>
+
+    </div>
+</header>
+
+<main class="mx-auto max-w-[90%] py-10">
+    @yield('content')
+</main>
+
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Publico\ProdutoController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// Página de produtos femininos
+Route::get('/produtos/femininos', [ProdutoController::class, 'feminino']);
