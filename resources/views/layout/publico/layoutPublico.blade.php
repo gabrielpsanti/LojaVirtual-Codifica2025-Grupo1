@@ -24,6 +24,27 @@
             </a>
 
             <a href="#" class="hover:underline">Kids</a>
+    <header class="border-b shadow-sm">
+        <div class="mx-auto flex max-w-6xl justify-between p-2">
+
+            <div class="flex items-center gap-3">
+                <div>LOGO</div>
+                <div>Masculino</div>
+                <div>Feminino</div>
+                <div>Kids</div>
+            </div>
+            @if (auth()->check())
+            <div class="flex gap-4 items-center">
+                <p>Olá, <a href="{{ route('cliente.perfil') }}" class="text-bold text-slate-800 hover:text-slate-600">{{ auth()->user()->nome }}</a></p>
+                <a class="font-semibold text-slate-800 text-lg" href="{{ route('cliente.logout') }}">
+                    Sair
+                </a>
+            </div>
+            @else
+                <a href="{{ route('cliente.login.form') }}">
+                    Login
+                </a>
+            @endif
         </div>
 
         <a href="#" class="hover:underline">Login</a>
