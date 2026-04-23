@@ -34,7 +34,7 @@
 
                     <p class="mt-1 text-sm text-slate-400">Selecione cor e tamanho</p>
 
-                    <form class="mt-4 space-y-4" method="POST" action="{{ route('cliente.comprar') }}">
+                    <form class="mt-4 space-y-4" method="POST" action="">
                         @csrf
                         <input type="hidden" name="variacao_produto_id" id="variacaoProdutoId"
                             value="{{ $variacaoInicial['id'] ?? '' }}">
