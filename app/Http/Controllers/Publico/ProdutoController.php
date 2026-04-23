@@ -14,6 +14,12 @@ class ProdutoController extends Controller
         return view('pages.publico.produtos.feminino', compact('produtos'));
     }
 
+    public function masculino()
+{
+    $produtos = Produto::where('genero', GeneroProduto::MASCULINO->value)->get();
+    return view('pages.publico.produtos.masculino', compact('produtos'));
+}
+
     public function variacoes(Produto $produto)
     {
         $variacoes = $produto->variacoes()

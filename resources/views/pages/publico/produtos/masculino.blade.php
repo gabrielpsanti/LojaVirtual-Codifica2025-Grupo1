@@ -1,14 +1,11 @@
 @extends('layout.publico.layoutPublico')
-
-@section('titulo-aba', 'Feminino')
-
+@section('titulo-aba', 'Produtos Masculinos')
 @section('content')
 
-
+<h1>Produtos Masculinos</h1>
 <div style="display: flex; flex-wrap: wrap; gap: 20px;">
 
 @forelse ($produtos as $produto)
-<a href="{{ route('publico.produtos.variacoes', $produto) }}">
 
 <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
                 
@@ -19,7 +16,7 @@
 <p>{{ $produto->descricao }}</p>
 
 </div>
-</a>
+
 @empty
 
 <p>Nenhum produto encontrado.</p>
