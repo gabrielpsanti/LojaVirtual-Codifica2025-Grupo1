@@ -11,50 +11,44 @@
 
 <body class="bg-slate-100 text-slate-900">
 
-<header class="border-b shadow-sm">
-    <div class="mx-auto flex max-w-6xl justify-between p-2">
-
-        <div class="flex items-center gap-5">
-            <div class="font-bold text-lg">LOGO</div>
-
-            <a href="#" class="hover:underline">Masculino</a>
-
-            <a href="/produtos/femininos" class="hover:underline text-pink-600 font-semibold">
-                Feminino
-            </a>
-
-            <a href="#" class="hover:underline">Kids</a>
     <header class="border-b shadow-sm">
-        <div class="mx-auto flex max-w-6xl justify-between p-2">
+        <div class="flex justify-between p-2 items-center max-w-6xl mx-auto">
 
-            <div class="flex items-center gap-3">
-                <div>LOGO</div>
-                <div>Masculino</div>
-                <div>Feminino</div>
-                <div>Kids</div>
-            </div>
-            @if (auth()->check())
-            <div class="flex gap-4 items-center">
-                <p>Olá, <a href="{{ route('cliente.perfil') }}" class="text-bold text-slate-800 hover:text-slate-600">{{ auth()->user()->nome }}</a></p>
-                <a class="font-semibold text-slate-800 text-lg" href="{{ route('cliente.logout') }}">
-                    Sair
+            <div class="flex gap-4">
+                <span class="font-bold text-lg">LOGO</span>
+
+                <a href="#" class="hover:underline">Masculino</a>
+
+                <a href="/produtos/femininos" class="hover:underline text-pink-600 font-semibold">
+                    Feminino
                 </a>
+
+                <a href="#" class="hover:underline">Kids</a>
             </div>
-            @else
-                <a href="{{ route('cliente.login.form') }}">
-                    Login
-                </a>
-            @endif
+
+            <div class="flex max-w-6xl justify-between p-2">
+                @if (auth()->check())
+                    <div class="flex gap-4 items-center">
+                        <p>Olá, <a href="{{ route('cliente.perfil') }}"
+                                class="text-bold text-slate-800 hover:text-slate-600">{{ auth()->user()->nome }}</a>
+                        </p>
+                        <a class="font-semibold text-slate-800 text-lg" href="{{ route('cliente.logout') }}">
+                            Sair
+                        </a>
+                    </div>
+                @else
+                    <a href="{{ route('cliente.login.form') }}">
+                        Login
+                    </a>
+                @endif
+            </div>
+
         </div>
+    </header>
 
-        <a href="#" class="hover:underline">Login</a>
-
-    </div>
-</header>
-
-<main class="mx-auto max-w-[90%] py-10">
-    @yield('content')
-</main>
+    <main class="mx-auto max-w-[90%] py-10">
+        @yield('content')
+    </main>
 
 </body>
 
