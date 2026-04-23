@@ -19,11 +19,18 @@
                 <div>Feminino</div>
                 <div>Kids</div>
             </div>
-
-            <a href="">
-                Login
-            </a>
-
+            @if (auth()->check())
+            <div class="flex gap-4 items-center">
+                <p>Olá, <a href="{{ route('cliente.perfil') }}" class="text-bold text-slate-800 hover:text-slate-600">{{ auth()->user()->nome }}</a></p>
+                <a class="font-semibold text-slate-800 text-lg" href="{{ route('cliente.logout') }}">
+                    Sair
+                </a>
+            </div>
+            @else
+                <a href="{{ route('cliente.login.form') }}">
+                    Login
+                </a>
+            @endif
         </div>
     </header>
 
