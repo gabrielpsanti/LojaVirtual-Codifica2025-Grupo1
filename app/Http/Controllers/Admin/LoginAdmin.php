@@ -28,13 +28,12 @@ class LoginAdmin extends Controller
         }
 
         if (!$usuario->flag_admin) {
-            //TODO TESTAR QUANDO O USUÁRIO LOGADO NÃO FOR ADMIN
             return back()
                 ->withErrors(['email' => 'Usuário sem permissão.'])
                 ->onlyInput('email');
         }
 
-        Auth::login($usuario);
+        Auth::guard('admin')->login($usuario);
         $request->session()->regenerate();
 
         return redirect()->route('admin.dashboard');
@@ -47,7 +46,7 @@ class LoginAdmin extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

@@ -67,7 +67,7 @@
 
                     <div class="flex items-center gap-3">
                         <div class="rounded-xl bg-slate-100 px-4 py-2">
-                            <p class="font-semibold text-slate-700">Olá, {{ auth()->user()->nome }}
+                            <p class="font-semibold text-slate-700">Olá, {{ auth('admin')->user()->nome }}
                             </p>
                         </div>
 

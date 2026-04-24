@@ -27,10 +27,10 @@
             </div>
 
             <div class="flex max-w-6xl justify-between p-2">
-                @if (auth()->check())
+                @if (auth('cliente')->check())
                     <div class="flex gap-4 items-center">
                         <p>Olá, <a href="{{ route('cliente.perfil') }}"
-                                class="text-bold text-slate-800 hover:text-slate-600">{{ auth()->user()->nome }}</a>
+                                class="text-bold text-slate-800 hover:text-slate-600">{{ auth('cliente')->user()->nome }}</a>
                         </p>
                         <a class="font-semibold text-slate-800 text-lg" href="{{ route('cliente.logout') }}">
                             Sair
