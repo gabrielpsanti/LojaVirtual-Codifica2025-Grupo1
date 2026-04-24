@@ -13,7 +13,7 @@
 
 <div class="produtos">
     @forelse ($produtos as $produto)
-        <a href="{{ route('publico.produtos.variacoes', $produto) }}">
+    <a href="{{ route('publico.produtos.variacoes', $produto) }}">
 
             <div class="produto-card">
 

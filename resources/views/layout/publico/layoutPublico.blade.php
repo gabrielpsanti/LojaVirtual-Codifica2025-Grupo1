@@ -10,7 +10,7 @@
 
    <style>
 
-/* 🔍 BARRA DE PESQUISA */
+/*barra pesqui.*/
 .search-box {
     display: flex;
     justify-content: center;
@@ -30,7 +30,6 @@
     border-color: #ff6a00;
 }
 
-/* BOTÃO COM LUPA BONITA */
 .search-btn {
     width: 45px;
     background-color: #ff6a00;
@@ -40,7 +39,7 @@
     position: relative;
 }
 
-/* círculo da lupa */
+/*círcul lupa*/
 .search-btn::before {
     content: "";
     position: absolute;
@@ -52,7 +51,7 @@
     left: 12px;
 }
 
-/* cabo da lupa */
+/*cabin*/
 .search-btn::after {
     content: "";
     position: absolute;
@@ -64,7 +63,6 @@
     left: 22px;
 }
 
-/* 🛍️ PRODUTOS */
 .produtos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -84,7 +82,6 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* 🖼️ IMAGEM CORRIGIDA (SEM ZOOM LOUCO) */
 .produto-card img {
     width: 100%;
     height: 320px;
