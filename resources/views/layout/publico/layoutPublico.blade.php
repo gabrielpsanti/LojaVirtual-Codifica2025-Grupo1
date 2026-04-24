@@ -17,7 +17,7 @@
             <div class="flex gap-4">
                 <span class="font-bold text-lg">LOGO</span>
 
-                <a href="#" class="hover:underline">Masculino</a>
+                <a href="/produtos/masculinos" class="hover:underline">Masculino</a>
 
                 <a href="/produtos/femininos" class="hover:underline text-pink-600 font-semibold">
                     Feminino
