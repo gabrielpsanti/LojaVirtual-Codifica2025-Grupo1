@@ -58,23 +58,18 @@ class ProdutoController extends Controller
     $produtos = Produto::query();
 
     foreach ($palavras as $palavra) {
-        $produtos->where(function ($query) use ($palavra) {
-            $query->where('nome', 'like', "%{$palavra}%")
-                ->orWhere('descricao', 'like', "%{$palavra}%")
-                ->orWhereHas('modelo', function ($q) use ($palavra) {
-                    $q->where('nome', 'like', "%{$palavra}%");
-                })
-                ->orWhereHas('modelo.categoria', function ($q) use ($palavra) {
-                    $q->where('nome', 'like', "%{$palavra}%");
-                });
-        });
-    }
+    $produtos = Produto::where('nome', 'like', "%{$search}%")
+    ->orWhere('descricao', 'like', "%{$search}%")
+    ->orWhereHas('modelo', function ($q) use ($search) { //muitas duvidas aq nesses %!! correto??
+    $q->where('nome', 'like', "%{$search}%");
+    })
+    ->get();
 
-    $produtos = $produtos->get();
 
     return view('pages.publico.produtos.index', [
         'produtos' => $produtos,
         'titulo' => 'Resultado da pesquisa'
     ]);
+}
 }
 }
