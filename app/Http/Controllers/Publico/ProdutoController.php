@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Publico;
 use App\Http\Controllers\Controller;
 use App\Models\Produto;
 use App\Enums\GeneroProduto;
+use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
@@ -48,4 +49,32 @@ class ProdutoController extends Controller
             'variacoes',
         ));
     }
+
+  public function pesquisa(Request $request)
+{
+    $search = trim($request->input('search'));
+    $palavras = explode(' ', $search);
+
+    $produtos = Produto::query();
+
+    foreach ($palavras as $palavra) {
+        $produtos->where(function ($query) use ($palavra) {
+            $query->where('nome', 'like', "%{$palavra}%")
+                ->orWhere('descricao', 'like', "%{$palavra}%")
+                ->orWhereHas('modelo', function ($q) use ($palavra) {
+                    $q->where('nome', 'like', "%{$palavra}%");
+                })
+                ->orWhereHas('modelo.categoria', function ($q) use ($palavra) {
+                    $q->where('nome', 'like', "%{$palavra}%");
+                });
+        });
+    }
+
+    $produtos = $produtos->get();
+
+    return view('pages.publico.produtos.index', [
+        'produtos' => $produtos,
+        'titulo' => 'Resultado da pesquisa'
+    ]);
+}
 }
