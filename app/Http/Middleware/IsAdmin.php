@@ -16,14 +16,16 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
+        $adminGuard = Auth::guard('admin');
+
+        if (!$adminGuard->check()) {
             return redirect()
                 ->route('admin.login.form')
                 -> withErrors(['email' => 'É necessário fazer o login.']);
         }
 
-        if (!Auth::user()->flag_admin) {
-            Auth::logout();
+        if (!$adminGuard->user()->flag_admin) {
+            $adminGuard->logout();
             //TODO TESTAR QUANDO O USUÁRIO LOGADO NÃO FOR ADMIN
             return redirect()
                 ->route('admin.login.form')

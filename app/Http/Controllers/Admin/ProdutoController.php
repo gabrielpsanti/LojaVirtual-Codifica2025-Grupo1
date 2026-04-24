@@ -34,7 +34,7 @@ class ProdutoController extends Controller
     public function store(ProdutoRequest $request)
     {
         $dados = $request->validated();
-        $dados['usuario_id'] = auth()->user()->id_usuario;
+        $dados['usuario_id'] = auth('admin')->user()->id_usuario;
 
         $this->produtoRepository->create($dados);
 
