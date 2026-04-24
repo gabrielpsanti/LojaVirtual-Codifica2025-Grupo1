@@ -12,11 +12,11 @@
                 <div class="flex flex-col gap-4">
                     <div>
                         <p>Nome</p>
-                        <p class="font-bold text-lg">{{ auth()->user()->nome }}</p>
+                        <p class="font-bold text-lg">{{ auth('cliente')->user()->nome }}</p>
                     </div>
                     <div>
                         <p>Email</p>
-                        <p class="font-bold text-lg">{{ auth()->user()->email }}</p>
+                        <p class="font-bold text-lg">{{ auth('cliente')->user()->email }}</p>
                     </div>
                 </div>
             </div>

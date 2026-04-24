@@ -8,6 +8,6 @@ class PerfilCliente extends Controller
 {
     public function index()
     {
-        return view('cliente.publico.perfil');
+        return view('pages.cliente.perfil');
     }
 }

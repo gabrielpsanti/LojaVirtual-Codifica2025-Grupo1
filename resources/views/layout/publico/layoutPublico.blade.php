@@ -110,7 +110,7 @@
             <div class="flex gap-4">
                 <span class="font-bold text-lg">LOGO</span>
 
-                <a href="#" class="hover:underline">Masculino</a>
+                <a href="/produtos/masculinos" class="hover:underline">Masculino</a>
 
                 <a href="/produtos/femininos" class="hover:underline text-pink-600 font-semibold">
                     Feminino
@@ -120,10 +120,10 @@
             </div>
 
             <div class="flex max-w-6xl justify-between p-2">
-                @if (auth()->check())
+                @if (auth('cliente')->check())
                     <div class="flex gap-4 items-center">
                         <p>Olá, <a href="{{ route('cliente.perfil') }}"
-                                class="text-bold text-slate-800 hover:text-slate-600">{{ auth()->user()->nome }}</a>
+                                class="text-bold text-slate-800 hover:text-slate-600">{{ auth('cliente')->user()->nome }}</a>
                         </p>
                         <a class="font-semibold text-slate-800 text-lg" href="{{ route('cliente.logout') }}">
                             Sair

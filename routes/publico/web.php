@@ -15,3 +15,6 @@ Route::get('/pesquisa', [ProdutoController::class, 'pesquisa'])
     ->name('produtos.pesquisa');
 
     Route::get('/produtos/femininos', [ProdutoController::class, 'feminino']);
+
+Route::get('/produtos/femininos', [ProdutoController::class, 'feminino']);
+Route::get('/produtos/masculinos', [ProdutoController::class, 'masculino']);

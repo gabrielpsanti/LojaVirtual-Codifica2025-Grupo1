@@ -16,10 +16,20 @@ class IsCliente
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()){
+        $clienteGuard = Auth::guard('cliente');
+
+        if (!$clienteGuard->check()) {
             return redirect()
                 ->route('cliente.login.form')
                 ->withErrors(['email' => 'É necessário fazer login para acessar esta página.']);
+        }
+
+        if ($clienteGuard->user()->flag_admin) {
+            $clienteGuard->logout();
+
+            return redirect()
+                ->route('cliente.login.form')
+                ->withErrors(['email' => 'Usuário sem permissão para área de cliente.']);
         }
 
         return $next($request);

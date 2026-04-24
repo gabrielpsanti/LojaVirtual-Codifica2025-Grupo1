@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Cliente;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cliente\ClienteLoginRequest;
-use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,17 +18,15 @@ class LoginCliente extends Controller
     {
         $dados = $request->validated();
 
-        $usuario = Usuario::where("email", $dados["email"])->first();
-
-        if (!Auth::attempt([
+        if (!Auth::guard('cliente')->attempt([
             'email' => $dados['email'],
             'password' => $dados['senha'],
+            'flag_admin' => false,
         ])) {
             return back()
                 ->withErrors(["email" => "E-mail ou senha inválidos."]);
         }
 
-        Auth::login($usuario);
         $request->session()->regenerate();
 
         return redirect()->route("publico.home");
@@ -37,7 +34,7 @@ class LoginCliente extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('cliente')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
