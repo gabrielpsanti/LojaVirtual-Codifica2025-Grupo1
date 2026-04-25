@@ -6,8 +6,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
 Route::get('/produtos/{produto}/variacoes', [ProdutoController::class, 'variacoes'])
     ->name('produtos.variacoes');
+
+
+Route::get('/pesquisa', [ProdutoController::class, 'pesquisa'])
+    ->name('produtos.pesquisa');
+
+    Route::get('/produtos/femininos', [ProdutoController::class, 'feminino']);
 
 Route::get('/produtos/femininos', [ProdutoController::class, 'feminino']);
 Route::get('/produtos/masculinos', [ProdutoController::class, 'masculino']);

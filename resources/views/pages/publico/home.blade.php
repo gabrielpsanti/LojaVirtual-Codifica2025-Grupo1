@@ -3,33 +3,39 @@
 @section('titulo-aba', 'Home')
 
 @section('content')
-    <h1>
 
-        <div class="mt-6 grid gap-4 grid-cols-4">
-            @forelse ($produtos as $produto)
-                <a href="{{ route('publico.produtos.variacoes', $produto) }}">
-                    <section>
-                        <div>
-                            @if (!empty($produto->imagem_apresentacao))
-                                <img src="{{ $produto->imagem_apresentacao }}" alt="{{ $produto->nome }}">
-                            @else
-                                <div>Sem imagem</div>
-                            @endif
-                        </div>
+<form action="{{ route('publico.produtos.pesquisa') }}" method="GET" class="search-box">
+    <input type="text" name="search" placeholder="Buscar produtos...">
+    <button type="submit" class="search-btn"></button>
+</form>
 
-                        <div>
-                            <p>R$ {{ $produto->variacoes_min_preco }}</p>
-                            <p>{{ $produto->modelo?->categoria->nome ?? '' }}</p>
-                            <p>{{ $produto->modelo?->nome ?? 'MODELO' }}</p>
-                            <p>{{ $produto->descricao }}</p>
-                        </div>
+<h1>Produtos</h1>
 
-                    </section>
-                </a>
-            @empty
-                <div>
-                    Nenhum produto cadastrado.
-                </div>
-            @endforelse
+<div class="produtos">
+    @forelse ($produtos as $produto)
+    <a href="{{ route('publico.produtos.variacoes', $produto) }}">
+
+            <div class="produto-card">
+
+                @if (!empty($produto->imagem_apresentacao))
+                    <img src="{{ $produto->imagem_apresentacao }}" alt="{{ $produto->nome }}">
+                @else
+                    <div>Sem imagem</div>
+                @endif
+
+                <p class="produto-preco">R$ {{ $produto->variacoes_min_preco }}</p>
+                <p>{{ $produto->modelo?->categoria->nome ?? '' }}</p>
+                <p>{{ $produto->modelo?->nome ?? 'MODELO' }}</p>
+                <p>{{ $produto->descricao }}</p>
+
+            </div>
+
+        </a>
+    @empty
+        <div>
+            Nenhum produto cadastrado.
         </div>
-    @endsection
+    @endforelse
+</div>
+
+@endsection
