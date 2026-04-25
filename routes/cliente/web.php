@@ -3,6 +3,7 @@
 use App\Http\Controllers\Cliente\LoginCliente;
 use App\Http\Controllers\Cliente\PerfilCliente;
 use App\Http\Controllers\Cliente\RegistroCliente;
+use App\Http\Controllers\Cliente\VendaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginCliente::class, 'showLoginForm'])->name('login.form');
@@ -14,4 +15,7 @@ Route::post('/registro', [RegistroCliente::class, 'store'])->name('registro');
 
 Route::middleware(['is_cliente'])->group(function () {
     Route::get('/perfil', [PerfilCliente::class, 'index'])->name('perfil');
+    Route::post('/comprar', [VendaController::class, 'store'])->name('comprar');
+    Route::get('/comprar/resumo/{variacaoProduto}/{quantidade}', [VendaController::class, 'resumo'])->name('comprar.resumo');
+    Route::post('/comprar/finalizar', [VendaController::class, 'finalizar'])->name('comprar.finalizar');
 });

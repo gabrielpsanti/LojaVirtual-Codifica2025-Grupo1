@@ -34,7 +34,19 @@
 
                     <p class="mt-1 text-sm text-slate-400">Selecione cor e tamanho</p>
 
-                    <form class="mt-4 space-y-4" method="POST" action="">
+                    @if (session('status'))
+                        <div class="mt-4 rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="mt-4 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
+
+                    <form class="mt-4 space-y-4" method="POST" action="{{ route('cliente.comprar') }}">
                         @csrf
                         <input type="hidden" name="variacao_produto_id" id="variacaoProdutoId"
                             value="{{ $variacaoInicial['id'] ?? '' }}">
@@ -58,6 +70,13 @@
                             </div>
                         </div>
 
+                        <div>
+                            <label class="mb-1 block text-sm font-medium text-slate-700" for="quantidade">Quantidade</label>
+                            <input id="quantidade" name="quantidade" type="number" min="1"
+                                value="{{ old('quantidade', 1) }}"
+                                class="w-full rounded-md border-slate-300 text-sm p-2 bg-slate-100">
+                        </div>
+
                         <div class="mx-auto rounded-md bg-slate-100 p-3 text-sm w-[80%]">
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-600">Preço</span>
@@ -79,10 +98,17 @@
                             </div>
                         @endif
                         <div class="flex justify-end">
-                            <button type="submit"
-                                class="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 cursor-pointer">
-                                Comprar
-                            </button>
+                            @if (auth('cliente')->check())
+                                <button type="submit"
+                                    class="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 cursor-pointer">
+                                    Comprar
+                                </button>
+                            @else
+                                <a href="{{ route('cliente.login.form') }}"
+                                    class="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 cursor-pointer">
+                                    Comprar
+                                </a>
+                            @endif
                         </div>
                     </form>
                 @endif
@@ -101,6 +127,7 @@
                 const variacaoIdInput = document.getElementById('variacaoProdutoId');
                 const precoEl = document.getElementById('variacaoPreco');
                 const estoqueEl = document.getElementById('variacaoEstoque');
+                const quantidadeInput = document.getElementById('quantidade');
                 const imagemEl = document.getElementById('variacaoImagem');
                 const semImagemEl = document.getElementById('variacaoSemImagem');
                 const variacoesPorCor = variacoes.reduce((grupos, variacao) => {
@@ -154,6 +181,11 @@
                     precoEl.textContent = `R$ ${variacao.preco}`;
                     estoqueEl.textContent = variacao.estoque;
                     imagemEl.src = variacao.imagem || '';
+                    quantidadeInput.max = variacao.estoque;
+
+                    if (quantidadeInput.value > variacao.estoque) {
+                        quantidadeInput.value = variacao.estoque;
+                    }
                 }
 
                 if (variacaoInicial) {

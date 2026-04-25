@@ -14,11 +14,22 @@ class Venda extends Model
     protected $primaryKey = 'id_venda';
 
     protected $fillable = [
+        'usuario_id',
+        'variacao_produto_id',
+        'quantidade',
+        'preco_unitario',
         'valor_total',
+        'cep',
+        'estado',
+        'cidade',
+        'bairro',
+        'rua',
+        'numero',
+        'complemento',
     ];
 
-    public function itens()
+    public function variacaoProduto()
     {
-        return $this->hasMany(ItemVenda::class, 'venda_id', 'id_venda');
+        return $this->belongsTo(VariacaoProduto::class, 'variacao_produto_id', 'id_variacao_produto');
     }
 }

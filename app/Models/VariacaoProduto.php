@@ -36,9 +36,4 @@ class VariacaoProduto extends Model
     {
         return $this->belongsTo(Tamanho::class, 'tamanho_id', 'id_tamanho');
     }
-
-    public function itensVenda()
-    {
-        return $this->hasMany(ItemVenda::class, 'variacao_produto_id', 'id_variacao_produto');
-    }
 }
