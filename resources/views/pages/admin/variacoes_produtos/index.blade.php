@@ -46,7 +46,7 @@
                             <td class="px-6 py-4 text-sm text-slate-500">{{ $variacaoProduto->id_variacao_produto }}</td>
                             <td class="px-6 py-4 text-md font-medium text-slate-800">{{ $variacaoProduto->produto?->nome ?? 'Produto não encontrado' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto->genero->label() ?? '-' }}</td>
-                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto?->modelo?->categoria?->nome ?? '-' }}
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto?->modelo?->categoria?->nome ?? '-' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto?->modelo?->nome ?? '-' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->cor?->nome ?? 'Cor não encontrada' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->tamanho?->nome ?? 'Tamanho não encontrado' }}</td>
@@ -80,7 +80,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="px-6 py-10 text-center text-lg text-slate-500">
+                            <td colspan="11" class="px-6 py-10 text-center text-lg text-slate-500">
                                 Nenhuma variação cadastrada até o momento.
                             </td>
                         </tr>
