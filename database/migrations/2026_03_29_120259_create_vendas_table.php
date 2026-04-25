@@ -14,7 +14,17 @@ return new class extends Migration
         Schema::create('vendas', function (Blueprint $table) {
             $table->id('id_venda');
             $table->foreignId('usuario_id')->constrained('usuarios', 'id_usuario');
-            $table->decimal('valor_total', 10, 2)->default(0);
+            $table->foreignId('variacao_produto_id')->constrained('variacoes_produtos', 'id_variacao_produto');
+            $table->integer('quantidade');
+            $table->decimal('preco_unitario', 10, 2);
+            $table->decimal('valor_total', 10, 2);
+            $table->string('cep', 9);
+            $table->string('estado', 2);
+            $table->string('cidade');
+            $table->string('bairro');
+            $table->string('rua');
+            $table->string('numero', 20);
+            $table->string('complemento')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
