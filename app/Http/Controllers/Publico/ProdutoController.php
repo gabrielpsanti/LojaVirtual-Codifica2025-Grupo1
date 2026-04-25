@@ -61,21 +61,26 @@ class ProdutoController extends Controller
     $search = trim($request->input('search'));
     $palavras = explode(' ', $search);
 
-    $produtos = Produto::query();
+    $produtos = collect();
 
     foreach ($palavras as $palavra) {
-    $produtos = Produto::where('nome', 'like', "%{$search}%")
-    ->orWhere('descricao', 'like', "%{$search}%")
-    ->orWhereHas('modelo', function ($q) use ($search) { //muitas duvidas aq nesses %!! correto??
-    $q->where('nome', 'like', "%{$search}%");
-    })
-    ->get();
 
+        $resultados = Produto::query()
+            ->where('nome', 'like', "%{$palavra}%")
+            ->orWhereHas('modelo', function ($query) use ($palavra) {
+                $query->where('nome', 'like', "%{$palavra}%");
+            })
+            ->orWhereHas('modelo.categoria', function ($query) use ($palavra) {
+                $query->where('nome', 'like', "%{$palavra}%");
+            })
+            ->get();
+
+        $produtos = $produtos->merge($resultados);
+    }
 
     return view('pages.publico.produtos.index', [
         'produtos' => $produtos,
         'titulo' => 'Resultado da pesquisa'
     ]);
-}
 }
 }
