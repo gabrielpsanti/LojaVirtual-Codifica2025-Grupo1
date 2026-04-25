@@ -3,12 +3,18 @@
 @section('titulo-aba', $titulo)
 
 @section('content')
+<form action="{{ route('publico.produtos.pesquisa') }}" method="GET" class="search-box">
+    <input type="text" name="search" placeholder="Buscar produtos...">
+    <button type="submit" class="search-btn"></button>
+</form>
 
 <h1>{{ $titulo }}</h1>
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px;">
 
 @forelse ($produtos as $produto)
+
+<a href="{{ route('publico.produtos.variacoes', $produto) }}">
 
 <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
                 
@@ -19,6 +25,7 @@
 <p>{{ $produto->descricao }}</p>
 
 </div>
+</a>
 
 @empty
 
