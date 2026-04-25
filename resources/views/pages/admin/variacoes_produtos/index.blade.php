@@ -46,7 +46,12 @@
                             <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->tamanho?->nome ?? 'Tamanho não encontrado' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->estoque }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">R$ {{ number_format($variacaoProduto->preco, 2, ',', '.') }}</td>
-                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->imagem }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                            <a href="{{ $variacaoProduto->imagem }}" target="_blank"
+                            class="text-blue-600 hover:underline">
+                            {{ $variacaoProduto->produto?->nome }}
+                            </a>
+                            </td>
                             <td class="px-6 py-4">
                                 <div class="flex justify-end gap-2">
                                     <a href="{{ route('admin.variacao_produtos.edit', $variacaoProduto) }}"
