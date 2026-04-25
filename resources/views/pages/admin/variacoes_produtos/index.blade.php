@@ -4,7 +4,7 @@
 @section('titulo-header', 'Variações de Produto')
 
 @section('content')
-    <section class="w-[75vw] mx-auto flex flex-col gap-4">
+    <section class="w-full max-w-[95vw] mx-auto flex flex-col gap-4">
         <div class="flex flex-col rounded-3xl bg-white px-6 py-4 shadow-sm flex-row items-center justify-between">
             <div>
                 <h2 class="text-2xl font-bold text-slate-800">Gerenciamento de variações</h2>
@@ -29,6 +29,9 @@
                     <tr class="divide-slate-200">
                         <th class="px-6 py-4">ID</th>
                         <th class="px-6 py-4">PRODUTO</th>
+                        <th class="px-6 py-4">GÊNERO</th>
+                        <th class="px-6 py-4">CATEGORIA</th>
+                        <th class="px-6 py-4">MODELO</th>
                         <th class="px-6 py-4">COR</th>
                         <th class="px-6 py-4">TAMANHO</th>
                         <th class="px-6 py-4">ESTOQUE</th>
@@ -42,6 +45,9 @@
                         <tr class="hover:bg-slate-100">
                             <td class="px-6 py-4 text-sm text-slate-500">{{ $variacaoProduto->id_variacao_produto }}</td>
                             <td class="px-6 py-4 text-md font-medium text-slate-800">{{ $variacaoProduto->produto?->nome ?? 'Produto não encontrado' }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto->genero->label() ?? '-' }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto?->modelo?->categoria?->nome ?? '-' }}
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto?->modelo?->nome ?? '-' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->cor?->nome ?? 'Cor não encontrada' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->tamanho?->nome ?? 'Tamanho não encontrado' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->estoque }}</td>
