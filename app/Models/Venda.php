@@ -32,4 +32,9 @@ class Venda extends Model
     {
         return $this->belongsTo(VariacaoProduto::class, 'variacao_produto_id', 'id_variacao_produto');
     }
+
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'usuario_id', 'id_usuario');
+    }
 }

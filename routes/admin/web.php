@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ModeloController;
 use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\Admin\TamanhoController;
 use App\Http\Controllers\Admin\VariacaoProdutoController;
+use App\Http\Controllers\Admin\VendaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginAdmin::class, 'showLoginForm'])->name('login.form');
@@ -46,4 +47,6 @@ Route::middleware(['is_admin'])->group(function () {
         ->names('variacao_produtos')
         ->parameters(['variacao-produtos' => 'variacaoProduto'])
         ->except('show');
+
+    Route::get('/vendas', [VendaController::class, 'index'])->name('vendas.index');
 });
