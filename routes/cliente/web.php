@@ -14,7 +14,10 @@ Route::get('/registro', [RegistroCliente::class, 'showRegistroForm'])->name('reg
 Route::post('/registro', [RegistroCliente::class, 'store'])->name('registro');
 
 Route::middleware(['is_cliente'])->group(function () {
+    Route::get('/area', [PerfilCliente::class, 'areaCliente'])->name('areaCliente');
     Route::get('/perfil', [PerfilCliente::class, 'index'])->name('perfil');
+
+    // Rotas de compra
     Route::post('/comprar', [VendaController::class, 'store'])->name('comprar');
     Route::get('/comprar/resumo/{variacaoProduto}/{quantidade}', [VendaController::class, 'resumo'])->name('comprar.resumo');
     Route::post('/comprar/finalizar', [VendaController::class, 'finalizar'])->name('comprar.finalizar');

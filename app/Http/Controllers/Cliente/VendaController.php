@@ -106,6 +106,6 @@ class VendaController extends Controller
             ]);
         });
 
-        return redirect()->route('publico.home');
+        return redirect()->route('cliente.areaCliente');
     }
 }
