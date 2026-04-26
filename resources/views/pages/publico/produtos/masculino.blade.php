@@ -6,7 +6,7 @@
 <div style="display: flex; flex-wrap: wrap; gap: 20px;">
 
 @forelse ($produtos as $produto)
-
+<a href="{{ route('publico.produtos.variacoes', $produto) }}">
 <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
                 
 <img src="{{ $produto->imagem_apresentacao }}" width="100%">
@@ -16,6 +16,7 @@
 <p>{{ $produto->descricao }}</p>
 
 </div>
+</a>
 
 @empty
 
