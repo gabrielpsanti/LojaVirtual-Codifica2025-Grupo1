@@ -46,7 +46,7 @@
                 <td class="px-6 py-4 text-sm text-slate-500">{{ $produto->id_produto }}</td>
                 <td class="px-6 py-4 text-md font-medium text-slate-800">{{ $produto->nome }}</td>
                 <td class="px-6 py-4 text-sm text-slate-600">
-                    {{ $produto->categoria?->nome ?? 'Categoria não encontrada' }}
+                   {{ $produto->modelo?->categoria?->nome ?? '-' }}
                 </td>
                 <td class="px-6 py-4 text-sm text-slate-600">
                     {{ $produto->genero?->label() ?? '-' }}
