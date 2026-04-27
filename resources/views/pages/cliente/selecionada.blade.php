@@ -4,9 +4,6 @@
 
 @section('content')
     <div class="mx-auto max-w-4xl space-y-6">
-        <a class="text-sm text-blue-600" href="{{ route('publico.produtos.variacoes', $variacao->produto) }}">
-            Voltar para variações
-        </a>
 
         @if ($errors->any())
             <div class="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
@@ -41,7 +38,7 @@
         <section class="rounded-lg bg-white p-6 shadow-md">
             <h2 class="mb-4 text-lg font-semibold text-slate-900">Endereço de destino</h2>
 
-            <form method="POST" action="{{ route('cliente.comprar.finalizar') }}" class="grid gap-4 sm:grid-cols-2">
+            <form method="POST" action="{{ route('cliente.comprar.finalizar') }}" class="grid gap-4 grid-cols-2">
                 @csrf
                 <input type="hidden" name="variacao_produto_id" value="{{ $variacao->id_variacao_produto }}">
                 <input type="hidden" name="quantidade" value="{{ $quantidade }}">
@@ -82,13 +79,13 @@
                         class="w-full rounded-md border-slate-300 p-2 text-sm bg-slate-100">
                 </div>
 
-                <div class="sm:col-span-2">
+                <div class="col-span-2">
                     <label class="mb-1 block text-sm font-medium text-slate-700" for="complemento">Complemento</label>
                     <input id="complemento" name="complemento" type="text" value="{{ old('complemento') }}"
                         class="w-full rounded-md border-slate-300 p-2 text-sm bg-slate-100">
                 </div>
 
-                <div class="sm:col-span-2 flex justify-end">
+                <div class="col-span-2 flex justify-end">
                     <button type="submit"
                         class="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 cursor-pointer">
                         Finalizar Compra

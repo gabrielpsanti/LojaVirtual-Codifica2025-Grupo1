@@ -39,11 +39,6 @@ class LoginAdmin extends Controller
         return redirect()->route('admin.dashboard');
     }
 
-    public function dashboard()
-    {
-        return view('pages.admin.dashboard');
-    }
-
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();

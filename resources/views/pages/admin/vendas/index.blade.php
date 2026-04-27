@@ -5,6 +5,13 @@
 
 @section('content')
     <section class="w-full max-w-[95vw] mx-auto flex flex-col gap-4">
+        <div class="flex justify-end">
+            <a href="{{ route('admin.vendas.mais_vendidos') }}"
+                class="inline-flex items-center rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700">
+                Mais Vendidos
+            </a>
+        </div>
+
         @if ($errors->any())
             <div class="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
                 {{ $errors->first() }}

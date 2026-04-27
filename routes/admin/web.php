@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\CorController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginAdmin;
+use App\Http\Controllers\Admin\MaisVendidoController;
 use App\Http\Controllers\Admin\ModeloController;
 use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\Admin\TamanhoController;
@@ -14,7 +16,7 @@ Route::get('/login', [LoginAdmin::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [LoginAdmin::class, 'login'])->name('login');
 
 Route::middleware(['is_admin'])->group(function () {
-    Route::get('/dashboard', [LoginAdmin::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [LoginAdmin::class, 'logout'])->name('logoutAdmin');
 
     //CRUD CORES
@@ -49,4 +51,5 @@ Route::middleware(['is_admin'])->group(function () {
         ->except('show');
 
     Route::get('/vendas', [VendaController::class, 'index'])->name('vendas.index');
+    Route::get('/vendas/mais-vendidos', [MaisVendidoController::class, 'index'])->name('vendas.mais_vendidos');
 });
