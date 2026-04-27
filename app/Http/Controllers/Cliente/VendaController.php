@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Cliente;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Cliente\ClienteFinalizarCompraRequest;
 use App\Http\Requests\Cliente\ClienteFinalizarVendaRequest;
 use App\Http\Requests\Cliente\ClienteVendaRequest;
 use App\Models\Venda;

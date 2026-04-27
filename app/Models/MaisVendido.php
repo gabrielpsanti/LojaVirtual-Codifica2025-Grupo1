@@ -12,7 +12,8 @@ class MaisVendido extends Model
     protected $fillable = [
         'variacao_produto_id',
         'quantidade_vendas',
-        'ranking'
+        'ranking',
+        'updated_at'
     ];
 
     public function variacao()
