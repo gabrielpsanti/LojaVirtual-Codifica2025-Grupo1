@@ -58,7 +58,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 3,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/560244/22893_C009_1-CAM-M-L-LINHO-PREM.jpg?v=639044390402670000',
-                'estoque' => 150,
+                'estoque' => 20,
                 'preco' => 89.90,
             ]);
 
@@ -69,7 +69,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 2,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/557413/22893_C002_1-CAM-M-L-LINHO-PREM.jpg?v=639009981459170000',
-                'estoque' => 150,
+                'estoque' => 30,
                 'preco' => 89.90,
             ]);
 
@@ -80,7 +80,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 2,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/515072/22532_X083_1-CAM-XDZ-FLANELA.jpg?v=638838882522000000',
-                'estoque' => 150,
+                'estoque' => 40,
                 'preco' => 89.90,
             ]);
 
@@ -91,7 +91,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 4,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/515089/22533_C020_1-CAM-XDZ-FLANELA.jpg?v=638838882618930000',
-                'estoque' => 150,
+                'estoque' => 19,
                 'preco' => 89.90,
             ]);
 
@@ -102,7 +102,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 5,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/515092/22534_C036_1-CAM-XDZ-FLANELA.jpg?v=638838882627370000',
-                'estoque' => 150,
+                'estoque' => 10,
                 'preco' => 89.90,
             ]);
 
@@ -113,7 +113,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 6,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/527634/22988_C010_1-CAM-JNS-C--BLS.jpg?v=638893322377430000',
-                'estoque' => 150,
+                'estoque' => 44,
                 'preco' => 89.90,
             ]);
 
@@ -135,7 +135,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 7,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/567830/23585_C003_1-POLO-BSC-COMF-PQT-FLEX-C--ETQ-BR-INV.jpg?v=639108139216800000',
-                'estoque' => 150,
+                'estoque' => 14,
                 'preco' => 89.90,
             ]);
 
@@ -190,7 +190,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 3,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/560253/23079_C009_1-POLO-ESP-ALG-C--ZIPER-INTERLOCK.jpg?v=639044390562000000',
-                'estoque' => 150,
+                'estoque' => 6,
                 'preco' => 89.90,
             ]);
 
@@ -201,7 +201,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 2,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/550107/23079_C002_1-POLO-ESP-ALG-C--ZIPER-INTERLOCK.jpg?v=638983062357770000',
-                'estoque' => 150,
+                'estoque' => 7,
                 'preco' => 89.90,
             ]);
 
@@ -212,7 +212,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'cor_id' => 1,
                 'tamanho_id' => $tamanhoId,
                 'imagem' => 'https://taco.vtexassets.com/arquivos/ids/568287/23499_C003_1-CCOL-SLIM-ESCURO.jpg?v=639117837064570000',
-                'estoque' => 150,
+                'estoque' => 36,
                 'preco' => 179.90,
             ]);
 
