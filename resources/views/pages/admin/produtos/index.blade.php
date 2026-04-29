@@ -26,7 +26,7 @@
         </div>
     @endif
 
-    <div class="overflow-hidden rounded-3xl bg-white shadow-sm">
+    <div class="overflow-x-auto rounded-3xl bg-white shadow-sm">
         <table class="min-w-full divide-y divide-slate-200">
 
             <thead class="bg-slate-900 text-left text-xs font-semibold text-slate-200">
@@ -38,7 +38,7 @@
                     <th class="px-6 py-4">MODELO</th>
                     <th class="px-6 py-4">FAIXA ETÁRIA</th>
                     <th class="px-6 py-4">IMAGEM_APRESENTACAO</th>
-                    <th class="px-6 py-4 text-right pr-[5.5rem]">AÇÕES</th>
+                    <th class="px-6 py-4 text-right">AÇÕES</th>
                 </tr>
               </thead>
                 @forelse ($produtos as $produto)
