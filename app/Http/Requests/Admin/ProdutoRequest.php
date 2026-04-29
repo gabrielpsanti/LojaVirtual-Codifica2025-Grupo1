@@ -31,6 +31,7 @@ class ProdutoRequest extends FormRequest
                     ->ignore($produto?->id_produto, 'id_produto'),
             ],
             'descricao' => ['nullable', 'string'],
+            'imagem_apresentacao' => ['required', 'string'],
             'modelo_id' => ['required', 'integer', 'exists:modelos,id_modelo'],
             'faixa_etaria' => ['required', 'integer', Rule::in(array_column(FaixaEtariaProduto::cases(), 'value'))],
             'genero' => ['required', 'integer', Rule::in(array_column(GeneroProduto::cases(), 'value'))],
