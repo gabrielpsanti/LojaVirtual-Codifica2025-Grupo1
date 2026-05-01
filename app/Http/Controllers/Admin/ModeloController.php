@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ModeloRequest;
 use App\Models\Modelo;
 use App\Repositories\ModeloRepository;
+use Illuminate\Http\Request;
 
 class ModeloController extends Controller
 {
@@ -13,11 +14,13 @@ class ModeloController extends Controller
         private ModeloRepository $modeloRepository
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $modelos = $this->modeloRepository->paginateOrderedByName();
+        $filtros = $request->only(['busca', 'categoria_id']);
+        $modelos = $this->modeloRepository->indexDados($filtros)->withQueryString();
+        $categorias = $this->modeloRepository->getCategorias();
 
-        return view('pages.admin.modelos.index', compact('modelos'));
+        return view('pages.admin.modelos.index', compact('modelos', 'filtros', 'categorias'));
     }
 
     public function create()

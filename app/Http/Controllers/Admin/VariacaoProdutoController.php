@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\VariacaoProdutoRequest;
+use App\Enums\GeneroProduto;
+use App\Models\Categoria;
+use App\Models\Modelo;
 use App\Models\VariacaoProduto;
 use App\Repositories\VariacaoProdutoRepository;
+use Illuminate\Http\Request;
 
 class VariacaoProdutoController extends Controller
 {
@@ -13,11 +17,18 @@ class VariacaoProdutoController extends Controller
         private VariacaoProdutoRepository $variacaoProdutoRepository
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $variacoesProdutos = $this->variacaoProdutoRepository->paginateOrderedById();
+        $filtros = $request->only(['busca', 'genero', 'categoria_id', 'modelo_id']);
+        $variacoesProdutos = $this->variacaoProdutoRepository->indexDados($filtros)->withQueryString();
+        $generos = GeneroProduto::cases();
+        $categorias = Categoria::query()->orderBy('nome')->get(['id_categoria', 'nome']);
+        $modelos = Modelo::query()
+            ->with('categoria:id_categoria,nome')
+            ->orderBy('nome')
+            ->get(['id_modelo', 'nome', 'categoria_id']);
 
-        return view('pages.admin.variacoes_produtos.index', compact('variacoesProdutos'));
+        return view('pages.admin.variacoes_produtos.index', compact('variacoesProdutos', 'filtros', 'generos', 'categorias', 'modelos'));
     }
 
     public function create()
