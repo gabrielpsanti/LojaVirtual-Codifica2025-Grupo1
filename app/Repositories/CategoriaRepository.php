@@ -7,9 +7,10 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class CategoriaRepository
 {
-    public function paginateOrderedByName(int $qnt = 10): LengthAwarePaginator
+      public function indexDados(array $filtros, int $qnt = 10): LengthAwarePaginator
     {
         return Categoria::query()
+            ->when($filtros['busca'] ?? null, fn ($query, $busca) => $query->where('nome', 'like', '%' . $busca . '%'))
             ->orderBy('nome')
             ->paginate($qnt);
     }
