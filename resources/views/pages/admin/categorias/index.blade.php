@@ -23,6 +23,29 @@
             </div>
         @endif
 
+        <div class="rounded-3xl bg-white px-6 py-5 shadow-sm">
+            <form method="GET" action="{{ route('admin.categorias.index') }}" class="flex flex-col gap-4">
+                <div>
+                    <label for="busca" class="mb-1 text-sm font-medium text-slate-700">Pesquisar categoria</label>
+                    <input id="busca" name="busca" type="text" value="{{ $filtros['busca'] ?? '' }}"
+                        placeholder="Nome da categoria"
+                        class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-700">
+                </div>
+
+                <div class="flex gap-2">
+                    <button type="submit"
+                        class="cursor-pointer rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700">
+                        Pesquisar
+                    </button>
+
+                    <a href="{{ route('admin.categorias.index') }}"
+                        class="items-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                        Limpar pesquisa
+                    </a>
+                </div>
+            </form>
+        </div>
+
         <div class="overflow-hidden rounded-3xl bg-white shadow-sm">
             <table class="min-w-full divide-y divide-slate-200">
                 <thead class="bg-slate-900 text-slate-200 text-left text-xs font-semibold">

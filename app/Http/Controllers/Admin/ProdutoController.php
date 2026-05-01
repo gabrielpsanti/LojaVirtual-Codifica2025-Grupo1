@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProdutoRequest;
+use App\Models\Categoria;
 use App\Models\Produto;
 use App\Repositories\ProdutoRepository;
 use App\Enums\FaixaEtariaProduto;
 use App\Enums\GeneroProduto;
+use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
@@ -15,11 +17,15 @@ class ProdutoController extends Controller
         private ProdutoRepository $produtoRepository
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $produtos = $this->produtoRepository->paginateOrderedByName();
+        $filtros = $request->only(['busca', 'genero', 'categoria_id', 'modelo_id']);
+        $produtos = $this->produtoRepository->indexDados($filtros)->withQueryString();
+        $generos = GeneroProduto::cases();
+        $categorias = Categoria::query()->orderBy('nome')->get(['id_categoria', 'nome']);
+        $modelos = $this->produtoRepository->getModelos();
 
-        return view('pages.admin.produtos.index', compact('produtos'));
+        return view('pages.admin.produtos.index', compact('produtos', 'filtros', 'generos', 'categorias', 'modelos'));
     }
 
     public function create()

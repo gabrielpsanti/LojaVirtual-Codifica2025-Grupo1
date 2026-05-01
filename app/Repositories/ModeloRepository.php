@@ -9,10 +9,17 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ModeloRepository
 {
-    public function paginateOrderedByName(int $qnt = 10): LengthAwarePaginator
+    public function indexDados(array $filtros, int $qnt = 10): LengthAwarePaginator
     {
         return Modelo::query()
             ->with('categoria')
+            ->when($filtros['busca'] ?? null, function ($query, $busca) {
+                $query->where(function ($subQuery) use ($busca) {
+                    $subQuery->where('nome', 'like', '%' . $busca . '%')
+                        ->orWhereHas('categoria', fn ($q) => $q->where('nome', 'like', '%' . $busca . '%'));
+                });
+            })
+            ->when($filtros['categoria_id'] ?? null, fn ($query, $categoriaId) => $query->where('categoria_id', $categoriaId))
             ->orderBy('nome')
             ->paginate($qnt);
     }

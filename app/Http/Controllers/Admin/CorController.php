@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CorRequest;
 use App\Models\Cor;
 use App\Repositories\CorRepository;
+use Illuminate\Http\Request;
 
 class CorController extends Controller
 {
@@ -13,11 +14,12 @@ class CorController extends Controller
         private CorRepository $corRepository
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $cores = $this->corRepository->paginateOrderedByName();
+        $filtros = $request->only(['busca']);
+        $cores = $this->corRepository->indexDados($filtros)->withQueryString();
 
-        return view('pages.admin.cores.index', compact('cores'));
+        return view('pages.admin.cores.index', compact('cores', 'filtros'));
     }
 
     public function create()
