@@ -7,9 +7,10 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class TamanhoRepository
 {
-    public function paginateOrderedByName(int $qnt = 10): LengthAwarePaginator
+    public function indexDados(array $filtros, int $qnt = 10): LengthAwarePaginator
     {
         return Tamanho::query()
+            ->when($filtros['busca'] ?? null, fn($query, $busca) => $query->where('nome', 'like', '%' . $busca . '%'))
             ->orderBy('nome')
             ->paginate($qnt);
     }
