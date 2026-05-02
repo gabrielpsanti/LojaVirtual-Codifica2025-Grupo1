@@ -18,7 +18,8 @@
             <option value="">Selecione um modelo</option>
             @foreach ($modelos as $modelo)
                 <option value="{{ $modelo->id_modelo }}" @selected(old('modelo_id', $produto->modelo_id ?? '') == $modelo->id_modelo)>
-                    {{ $modelo->nome }}
+    {{ $modelo->nome }} ({{ $modelo->categoria->nome ?? 'Sem categoria' }})
+
                 </option>
             @endforeach
         </select>
@@ -57,21 +58,34 @@
             @endforeach
         </select>
 
-        @error('genero')
-            <p class="text-sm font-medium text-red-600">{{ $message }}</p>
-        @enderror
-    </div>
+@error('genero')
+    <p class="text-sm font-medium text-red-600">{{ $message }}</p>
+@enderror
+</div>
 
-    <div class="space-y-2">
-        <label for="descricao" class="text-sm font-semibold text-slate-700">Descrição</label>
-        <textarea name="descricao" id="descricao" rows="4"
-            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none"
-            placeholder="Descreva os detalhes do produto">{{ old('descricao', $produto->descricao ?? '') }}</textarea>
 
-        @error('descricao')
-            <p class="text-sm font-medium text-red-600">{{ $message }}</p>
-        @enderror
-    </div>
+<div class="space-y-2">
+    <label for="imagem" class="text-sm font-semibold text-slate-700">Imagem (URL)</label>
+    <input type="text" name="imagem_apresentacao" id="imagem"
+        value="{{ old('imagem_apresentacao', $produto->imagem_apresentacao ?? '') }}"
+        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none"
+        placeholder="Cole a URL da imagem (ex: site TACO)">
+
+    @error('imagem_apresentacao')
+        <p class="text-sm font-medium text-red-600">{{ $message }}</p>
+    @enderror
+</div>
+
+<div class="space-y-2">
+    <label for="descricao" class="text-sm font-semibold text-slate-700">Descrição</label>
+    <textarea name="descricao" id="descricao" rows="4"
+        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none"
+        placeholder="Descreva o produto em português...">{{ old('descricao', $produto->descricao ?? '') }}</textarea>
+
+    @error('descricao')
+        <p class="text-sm font-medium text-red-600">{{ $message }}</p>
+    @enderror
+</div>
 </div>
 
 <div class="flex items-center gap-3 pt-4">

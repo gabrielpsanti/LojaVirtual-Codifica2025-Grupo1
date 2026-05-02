@@ -33,7 +33,6 @@ class ProdutoController extends Controller
         $modelos = $this->produtoRepository->getModelos();
         $faixasEtarias = FaixaEtariaProduto::cases();
         $generos = GeneroProduto::cases();
-
         return view('pages.admin.produtos.criar', compact('modelos', 'faixasEtarias', 'generos'));
     }
 
