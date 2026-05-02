@@ -19,6 +19,16 @@ class ProdutoRepository
             ->get();
     }
 
+  public function maisVendidos(int $limite = 5): Collection
+{
+    return Produto::query()
+        ->select('produtos.*', 'mais_vendidos.quantidade_vendas as total_vendas')
+        ->join('variacoes_produtos', 'produtos.id_produto', '=', 'variacoes_produtos.produto_id')
+        ->join('mais_vendidos', 'variacoes_produtos.id_variacao_produto', '=', 'mais_vendidos.variacao_produto_id')
+        ->orderByDesc('mais_vendidos.quantidade_vendas')
+        ->limit($limite)
+        ->get();
+}
     public function paginateOrderedByName(int $qnt = 10): LengthAwarePaginator
     {
         return Produto::query()
