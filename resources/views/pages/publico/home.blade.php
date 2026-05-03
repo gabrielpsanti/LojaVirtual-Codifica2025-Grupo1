@@ -9,6 +9,30 @@
     <button type="submit" class="search-btn"></button>
 </form>
 
+
+<h2>Mais vendidos</h2>
+
+<div class="produtos">
+    @forelse ($maisVendidos as $produto)
+        <a href="{{ route('publico.produtos.variacoes', $produto) }}">
+            <div class="produto-card">
+
+                @if (!empty($produto->imagem_apresentacao))
+                    <img src="{{ $produto->imagem_apresentacao }}" alt="{{ $produto->nome }}">
+                @else
+                    <div>Sem imagem</div>
+                @endif
+
+                <p><strong>{{ $produto->nome }}</strong></p>
+                <p>Vendidos: {{ $produto->total_vendas }}</p>
+
+            </div>
+        </a>
+    @empty
+        <p>Nenhum produto vendido ainda.</p>
+    @endforelse
+</div>
+
 <h1>Produtos</h1>
 
 <div class="produtos">
