@@ -9,9 +9,9 @@
     <button type="submit" class="search-btn"></button>
 </form>
 
-<h1>Produtos</h1>
+<h1 class="text-3x1 font-bold text-orange-400 border-b-2 pb-2">Produtos</h1>
 
-<div class="produtos">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     @forelse ($produtos as $produto)
     <a href="{{ route('publico.produtos.variacoes', $produto) }}">
 
