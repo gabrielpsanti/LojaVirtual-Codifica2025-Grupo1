@@ -23,6 +23,70 @@
             </div>
         @endif
 
+        <div class="rounded-3xl bg-white px-6 py-5 shadow-sm">
+            <form method="GET" action="{{ route('admin.variacao_produtos.index') }}" class="flex flex-col gap-4">
+                <div>
+                    <label for="busca" class="mb-1 text-sm font-medium text-slate-700">Pesquisar variação</label>
+                    <input id="busca" name="busca" type="text" value="{{ $filtros['busca'] ?? '' }}"
+                        placeholder="Produto, categoria, modelo, cor ou tamanho"
+                        class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-700">
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    <div>
+                        <label for="genero" class="mb-1 text-sm font-medium text-slate-700">Gênero</label>
+                        <select id="genero" name="genero"
+                            class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-700">
+                            <option value="">Todos</option>
+                            @foreach ($generos as $genero)
+                                <option value="{{ $genero->value }}" @selected((string) ($filtros['genero'] ?? '') === (string) $genero->value)>
+                                    {{ $genero->label() }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="categoria_id" class="mb-1 text-sm font-medium text-slate-700">Categoria</label>
+                        <select id="categoria_id" name="categoria_id"
+                            class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-700">
+                            <option value="">Todos</option>
+                            @foreach ($categorias as $categoria)
+                                <option value="{{ $categoria->id_categoria }}" @selected((string) ($filtros['categoria_id'] ?? '') === (string) $categoria->id_categoria)>
+                                    {{ $categoria->nome }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="modelo_id" class="mb-1 text-sm font-medium text-slate-700">Modelo</label>
+                        <select id="modelo_id" name="modelo_id"
+                            class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-700">
+                            <option value="">Todos</option>
+                            @foreach ($modelos as $modelo)
+                                <option value="{{ $modelo->id_modelo }}" @selected((string) ($filtros['modelo_id'] ?? '') === (string) $modelo->id_modelo)>
+                                    {{ $modelo->nome }}{{ $modelo->categoria?->nome ? ' (' . $modelo->categoria->nome . ')' : '' }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button type="submit"
+                        class="cursor-pointer rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700">
+                        Filtrar
+                    </button>
+
+                    <a href="{{ route('admin.variacao_produtos.index') }}"
+                        class="items-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                        Limpar filtros
+                    </a>
+                </div>
+            </form>
+        </div>
+
         <div class="overflow-hidden rounded-3xl bg-white shadow-sm">
             <table class="min-w-full divide-y divide-slate-200">
                 <thead class="bg-slate-900 text-left text-xs font-semibold text-slate-200">
@@ -44,19 +108,26 @@
                     @forelse ($variacoesProdutos as $variacaoProduto)
                         <tr class="hover:bg-slate-100">
                             <td class="px-6 py-4 text-sm text-slate-500">{{ $variacaoProduto->id_variacao_produto }}</td>
-                            <td class="px-6 py-4 text-md font-medium text-slate-800">{{ $variacaoProduto->produto?->nome ?? 'Produto não encontrado' }}</td>
-                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto->genero->label() ?? '-' }}</td>
-                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto?->modelo?->categoria?->nome ?? '-' }}</td>
-                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->produto?->modelo?->nome ?? '-' }}</td>
-                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->cor?->nome ?? 'Cor não encontrada' }}</td>
-                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->tamanho?->nome ?? 'Tamanho não encontrado' }}</td>
-                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->estoque }}</td>
-                            <td class="px-6 py-4 text-sm text-slate-600">R$ {{ number_format($variacaoProduto->preco, 2, ',', '.') }}</td>
+                            <td class="px-6 py-4 text-md font-medium text-slate-800">
+                                {{ $variacaoProduto->produto?->nome ?? 'Produto não encontrado' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">
-                            <a href="{{ $variacaoProduto->imagem }}" target="_blank"
-                            class="text-blue-600 hover:underline">
-                            {{ $variacaoProduto->produto?->nome }}
-                            </a>
+                                {{ $variacaoProduto->produto?->genero?->label() ?? '-' }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                {{ $variacaoProduto->produto?->modelo?->categoria?->nome ?? '-' }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                {{ $variacaoProduto->produto?->modelo?->nome ?? '-' }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                {{ $variacaoProduto->cor?->nome ?? 'Cor não encontrada' }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                {{ $variacaoProduto->tamanho?->nome ?? 'Tamanho não encontrado' }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ $variacaoProduto->estoque }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">R$
+                                {{ number_format($variacaoProduto->preco, 2, ',', '.') }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                <a href="{{ $variacaoProduto->imagem }}" target="_blank"
+                                    class="text-blue-600 hover:underline">
+                                    {{ $variacaoProduto->produto?->nome }}
+                                </a>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex justify-end gap-2">

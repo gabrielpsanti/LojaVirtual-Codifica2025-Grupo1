@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TamanhoRequest;
 use App\Models\Tamanho;
 use App\Repositories\TamanhoRepository;
+use Illuminate\Http\Request;
 
 class TamanhoController extends Controller
 {
@@ -13,11 +14,12 @@ class TamanhoController extends Controller
         private TamanhoRepository $tamanhoRepository
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $tamanhos = $this->tamanhoRepository->paginateOrderedByName();
+        $filtros = $request->only(['busca']);
+        $tamanhos = $this->tamanhoRepository->indexDados($filtros)->withQueryString();
 
-        return view('pages.admin.tamanhos.index', compact('tamanhos'));
+        return view('pages.admin.tamanhos.index', compact('tamanhos', 'filtros'));
     }
 
     public function create()

@@ -103,8 +103,15 @@ class VendaController extends Controller
                 'numero' => $dados['numero'],
                 'complemento' => $dados['complemento'] ?? null,
             ]);
-        });
+        DB::table('mais_vendidos')->updateOrInsert(
+            ['variacao_produto_id' => $variacao->id_variacao_produto],
+            [
+            'quantidade_vendas' => DB::raw('quantidade_vendas + ' . $quantidade),
+            'updated_at' => now()
+            ]
+        );
 
-        return redirect()->route('cliente.areaCliente');
-    }
+    });
+   return redirect()->route('cliente.areaCliente');
+}
 }

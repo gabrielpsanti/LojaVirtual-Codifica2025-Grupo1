@@ -15,6 +15,8 @@ class HomeController extends Controller
     {
         $produtos = $this->produtoRepository->home();
 
-        return view('pages.publico.home', compact('produtos'));
+        $maisVendidos = $this->produtoRepository->maisVendidos();
+
+       return view('pages.publico.home', compact('produtos', 'maisVendidos'));
     }
 }

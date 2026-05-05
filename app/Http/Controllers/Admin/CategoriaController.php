@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoriaRequest;
 use App\Models\Categoria;
 use App\Repositories\CategoriaRepository;
+use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
@@ -13,11 +14,12 @@ class CategoriaController extends Controller
         private CategoriaRepository $categoriaRepository
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $categorias = $this->categoriaRepository->paginateOrderedByName();
+        $filtros = $request->only(['busca']);
+        $categorias = $this->categoriaRepository->indexDados($filtros)->withQueryString();
 
-        return view('pages.admin.categorias.index', compact('categorias'));
+        return view('pages.admin.categorias.index', compact('categorias', 'filtros'));
     }
 
     public function create()
