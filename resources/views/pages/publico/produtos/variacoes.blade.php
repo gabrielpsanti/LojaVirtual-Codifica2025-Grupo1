@@ -99,14 +99,20 @@
                         @endif
                         <div class="flex justify-end">
                             @if (auth('cliente')->check())
-                                <button type="submit"
-                                    class="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 cursor-pointer">
-                                    Comprar
-                                </button>
+                                <div class="flex gap-2">
+                                    <button type="submit" name="acao" value="adicionar_carrinho"
+                                        class="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 cursor-pointer">
+                                        Adicionar ao carrinho
+                                    </button>
+                                    <button type="submit" name="acao" value="comprar_agora"
+                                        class="rounded-md bg-green-700 px-4 py-2 text-sm font-semibold text-white hover:bg-green-600 cursor-pointer">
+                                        Comprar agora
+                                    </button>
+                                </div>
                             @else
                                 <a href="{{ route('cliente.login.form') }}"
                                     class="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 cursor-pointer">
-                                    Comprar
+                                    Entrar para comprar
                                 </a>
                             @endif
                         </div>
