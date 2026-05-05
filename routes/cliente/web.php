@@ -17,8 +17,12 @@ Route::middleware(['is_cliente'])->group(function () {
     Route::get('/area', [PerfilCliente::class, 'areaCliente'])->name('areaCliente');
     Route::get('/perfil', [PerfilCliente::class, 'index'])->name('perfil');
 
-    // Rotas de compra
+    // Rotas de compra/carrinho
     Route::post('/comprar', [VendaController::class, 'store'])->name('comprar');
     Route::get('/comprar/resumo/{variacaoProduto}/{quantidade}', [VendaController::class, 'resumo'])->name('comprar.resumo');
     Route::post('/comprar/finalizar', [VendaController::class, 'finalizar'])->name('comprar.finalizar');
+    Route::get('/carrinho', [VendaController::class, 'carrinho'])->name('carrinho.index');
+    Route::post('/carrinho/item/{carrinhoItem}/quantidade', [VendaController::class, 'atualizarQuantidade'])->name('carrinho.item.quantidade');
+    Route::post('/carrinho/item/{carrinhoItem}/remover', [VendaController::class, 'removerItem'])->name('carrinho.item.remover');
+    Route::post('/carrinho/finalizar', [VendaController::class, 'finalizarCarrinho'])->name('carrinho.finalizar');
 });
