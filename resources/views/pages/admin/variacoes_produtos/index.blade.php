@@ -109,7 +109,9 @@
                         <tr class="hover:bg-slate-100">
                             <td class="px-6 py-4 text-sm text-slate-500">{{ $variacaoProduto->id_variacao_produto }}</td>
                             <td class="px-6 py-4 text-md font-medium text-slate-800">
+                                <a href="{{ route('admin.variacoes.show', $variacaoProduto ) }}">
                                 {{ $variacaoProduto->produto?->nome ?? 'Produto não encontrado' }}</td>
+                                </a>
                             <td class="px-6 py-4 text-sm text-slate-600">
                                 {{ $variacaoProduto->produto?->genero?->label() ?? '-' }}</td>
                             <td class="px-6 py-4 text-sm text-slate-600">
