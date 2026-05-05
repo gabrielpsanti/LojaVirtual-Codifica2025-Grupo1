@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VariacaoProduto extends Model
 {
+    protected $table = 'variacoes_produtos';
+
     use HasFactory, SoftDeletes;
 
-    protected $table = 'variacoes_produtos';
     protected $primaryKey = 'id_variacao_produto';
 
     protected $fillable = [
