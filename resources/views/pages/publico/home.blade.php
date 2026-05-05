@@ -15,6 +15,7 @@
 <div class="produtos">
     @forelse ($maisVendidos as $produto)
         <a href="{{ route('publico.produtos.variacoes', $produto) }}">
+
             <div class="produto-card">
 
                 @if (!empty($produto->imagem_apresentacao))
@@ -27,6 +28,7 @@
                 <p>Vendidos: {{ $produto->total_vendas }}</p>
 
             </div>
+
         </a>
     @empty
         <p>Nenhum produto vendido ainda.</p>
@@ -34,24 +36,28 @@
 </div>
 
 <h1>Produtos</h1>
-<h1 class="text-3x1 font-bold text-orange-400 border-b-2 pb-2">Produtos</h1>
 
-<div class="produtos">
+<div class="grid grid-cols-4 gap-6">
     @forelse ($produtos as $produto)
-    <a href="{{ route('publico.produtos.variacoes', $produto) }}">
+    <a class="bg-white flex flex-col gap-3 rounded-xl hover:scale-105 transition-all hover:shadow-xl" href="{{ route('publico.produtos.variacoes', $produto) }}">
 
-            <div class="produto-card">
+            <div class="aspect-2/3 p-4 object-contain flex flex-col gap-2">
 
                 @if (!empty($produto->imagem_apresentacao))
-                    <img src="{{ $produto->imagem_apresentacao }}" alt="{{ $produto->nome }}">
+                    <img class="rounded-xl" src="{{ $produto->imagem_apresentacao }}" alt="{{ $produto->nome }}">
                 @else
                     <div>Sem imagem</div>
                 @endif
 
-                <p class="produto-preco">R$ {{ $produto->variacoes_min_preco }}</p>
-                <p>{{ $produto->modelo?->categoria->nome ?? '' }}</p>
-                <p>{{ $produto->modelo?->nome ?? 'MODELO' }}</p>
-                <p>{{ $produto->descricao }}</p>
+                <p class="text-green-700 font-semibold text-center text-lg">R$ {{ $produto->variacoes_min_preco }}</p>
+
+                <div class="flex flex-col text-center text-gray-500 text-s underline decoration-1">
+
+                    <p>{{ $produto->modelo?->categoria->nome ?? '' }} - {{ $produto->modelo?->nome ?? 'MODELO' }}</p>
+
+                </div>
+
+                <p class="indent-7">{{ $produto->descricao }}</p>
 
             </div>
 
