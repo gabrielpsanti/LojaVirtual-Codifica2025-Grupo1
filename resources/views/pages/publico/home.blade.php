@@ -10,7 +10,9 @@
 </form>
 
 
-<h2>Mais vendidos</h2>
+@if ($maisVendidos->isNotEmpty())
+    <h2>Mais vendidos</h2>
+@endif
 
 <div class="produtos">
     @forelse ($maisVendidos as $produto)
