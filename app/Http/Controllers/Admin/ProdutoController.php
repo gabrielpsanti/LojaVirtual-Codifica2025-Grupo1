@@ -33,7 +33,6 @@ class ProdutoController extends Controller
         $modelos = $this->produtoRepository->getModelos();
         $faixasEtarias = FaixaEtariaProduto::cases();
         $generos = GeneroProduto::cases();
-
         return view('pages.admin.produtos.criar', compact('modelos', 'faixasEtarias', 'generos'));
     }
 
@@ -77,4 +76,11 @@ class ProdutoController extends Controller
             ->route('admin.produtos.index')
             ->with('success', 'Produto removido com sucesso.');
     }
+
+    public function show(Produto $produto)
+{
+    return view('pages.admin.produtos.show', [
+        'produto' => $produto
+    ]);
+}
 }
