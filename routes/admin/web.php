@@ -42,8 +42,7 @@ Route::middleware(['is_admin'])->group(function () {
 
     //CRUD PRODUTOS
     Route::resource('/produtos', ProdutoController::class)
-        ->parameters(['produtos' => 'produto'])
-        ->except('show');
+        ->parameters(['produtos' => 'produto']);
 
 Route::get('/variacoes/{variacaoProduto}', [VariacaoDetalheController::class, 'show'])
     ->name('variacoes.show');

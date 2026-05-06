@@ -76,4 +76,11 @@ class ProdutoController extends Controller
             ->route('admin.produtos.index')
             ->with('success', 'Produto removido com sucesso.');
     }
+
+    public function show(Produto $produto)
+{
+    return view('pages.admin.produtos.show', [
+        'produto' => $produto
+    ]);
+}
 }
