@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VariacaoProduto extends Model
 {
+    protected $table = 'variacoes_produtos';
+
     use HasFactory, SoftDeletes;
 
-    protected $table = 'variacoes_produtos';
     protected $primaryKey = 'id_variacao_produto';
 
     protected $fillable = [
@@ -35,5 +36,10 @@ class VariacaoProduto extends Model
     public function tamanho()
     {
         return $this->belongsTo(Tamanho::class, 'tamanho_id', 'id_tamanho');
+    }
+
+    public function carrinhoItens()
+    {
+        return $this->hasMany(CarrinhoItem::class, 'variacao_produto_id', 'id_variacao_produto');
     }
 }

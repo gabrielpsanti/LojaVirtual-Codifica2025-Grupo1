@@ -101,8 +101,8 @@
                     <th class="px-6 py-4">GENERO</th>
                     <th class="px-6 py-4">MODELO</th>
                     <th class="px-6 py-4">FAIXA ETÁRIA</th>
-                    <th class="px-6 py-4">IMAGEM_APRESENTACAO</th>
-                    <th class="px-6 py-4 text-right">AÇÕES</th>
+                    <th class="px-6 py-4">IMAGEM</th>
+                    <th class="px-6 py-4 text-right pr-[5.5rem]">AÇÕES</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-300">

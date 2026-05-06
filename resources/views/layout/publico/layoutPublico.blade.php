@@ -124,6 +124,9 @@
             <div class="flex max-w-6xl justify-between p-2">
                 @if (auth('cliente')->check())
                     <div class="flex gap-4 items-center">
+                        <a class="font-semibold text-slate-800" href="{{ route('cliente.carrinho.index') }}">
+                            Carrinho
+                        </a>
                         <p>Olá, <a href="{{ route('cliente.areaCliente') }}"
                                 class="text-bold text-slate-800 hover:text-slate-600">{{ auth('cliente')->user()->nome }}</a>
                         </p>

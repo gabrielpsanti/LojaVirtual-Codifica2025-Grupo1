@@ -30,7 +30,7 @@ class Usuario extends Authenticatable
             'flag_admin' => 'boolean',
         ];
     }
-    
+
     public function getAuthPassword(): string
     {
         return $this->senha;
@@ -44,5 +44,10 @@ class Usuario extends Authenticatable
     public function vendas()
     {
         return $this->hasMany(Venda::class, 'usuario_id', 'id_usuario');
+    }
+
+    public function carrinhos()
+    {
+        return $this->hasMany(Carrinho::class, 'usuario_id', 'id_usuario');
     }
 }

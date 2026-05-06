@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MaisVendidoController;
 use App\Http\Controllers\Admin\ModeloController;
 use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\Admin\TamanhoController;
+use App\Http\Controllers\Admin\VariacaoDetalheController;
 use App\Http\Controllers\Admin\VariacaoProdutoController;
 use App\Http\Controllers\Admin\VendaController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,9 @@ Route::middleware(['is_admin'])->group(function () {
     Route::resource('/produtos', ProdutoController::class)
         ->parameters(['produtos' => 'produto'])
         ->except('show');
+
+Route::get('/variacoes/{variacaoProduto}', [VariacaoDetalheController::class, 'show'])
+    ->name('variacoes.show');
 
     //CRUD VARIACOES PRODUTOS
     Route::resource('/variacao-produtos', VariacaoProdutoController::class)
