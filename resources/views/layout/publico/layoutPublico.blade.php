@@ -141,12 +141,14 @@
                             Sair
                         </a>
                     </div>
+                </div>
                 @else
-                    <a href="{{ route('cliente.login.form') }}">
+                <div>
+                    <a class="ml-150 flex items-center gap-3" href="{{ route('cliente.login.form') }}">
                         Login
                     </a>
+                </div>
                 @endif
-            </div>
 
         </div>
     </header>
