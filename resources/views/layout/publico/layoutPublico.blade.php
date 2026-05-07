@@ -125,18 +125,18 @@
                 @if (auth('cliente')->check())
                     <div class="flex gap-4 items-center">
 
-                            <p class="ml-150">
-                            Olá,
-                            <a href="{{ route('cliente.areaCliente') }}"
-                             class="text-bold text-slate-800 hover:text-slate-600">
-                             {{ auth('cliente')->user()->nome }}
+                            <p class="ml-150 flex items-center gap-3">
+                                <a href="{{ route('cliente.areaCliente') }}"
+                                    class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-200 text-slate-800 hover:bg-slate-300"
+                                    aria-label="Perfil">
+                                    <i class="fa-solid fa-user"></i>
                                 </a>
 
-                            <a class="font-semibold text-slate-800" href="{{ route('cliente.carrinho.index') }}">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                             </a>
+                                <a class="font-semibold text-slate-800" href="{{ route('cliente.carrinho.index') }}">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
 
-                                   </p>
+                            </p>
                         <a class="font-semibold text-slate-800 text-lg" href="{{ route('cliente.logout') }}">
                             Sair
                         </a>
