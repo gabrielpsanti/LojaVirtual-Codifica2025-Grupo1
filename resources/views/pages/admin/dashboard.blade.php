@@ -113,7 +113,7 @@
                                 <td colspan="2" class="text-center p-4">
                                     <a href=""
                                         class="inline-flex items-center rounded-xl bg-slate-800 px-4 py-1 text-sm font-semibold text-white hover:bg-slate-700">
-                                        Ver lista completa
+                                        Ver lista completa (em breve)
                                     </a>
                                 </td>
                             </tr>
