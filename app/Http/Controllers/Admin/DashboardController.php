@@ -6,17 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Produto;
 use App\Models\VariacaoProduto;
 use App\Models\Venda;
-use App\Repositories\MaisVendidoRepository;
+use App\Repositories\MaisVendidosRepository;
 
 class DashboardController extends Controller
 {
     public function __construct(
-        private MaisVendidoRepository $maisVendidoRepository
+        private MaisVendidosRepository $maisVendidosRepository
     ) {}
 
     public function index()
     {
-        $maisVendidos = $this->maisVendidoRepository->listarTop(10);
+        $maisVendidos = $this->maisVendidosRepository->listarTop(10);
         $totalVendas = Venda::query()->count();
         $totalProdutos = Produto::query()->count();
         $totalVariacoes = VariacaoProduto::query()->count();
