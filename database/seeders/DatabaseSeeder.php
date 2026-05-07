@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder {
             CoresSeeder::class,
             ProdutoSeeder::class,
             VariacaoProdutoSeeder::class,
+            VendaSeeder::class,
         ]);
     }
 }

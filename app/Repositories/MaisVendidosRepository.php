@@ -7,7 +7,7 @@ use App\Models\Venda;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
-class MaisVendidoRepository
+class MaisVendidosRepository
 {
     public function atualizarRankingUltimas24Horas(): int
     {
