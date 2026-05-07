@@ -30,8 +30,8 @@ class ProdutoRepository
         return $itens
             ->filter(fn($item) => $item->variacao && $item->variacao->produto)
             ->unique(fn($item) => $item->variacao->produto->id_produto)
-            ->limit($limite)
-            ->get();
+            ->take($limite)
+            ->values();
     }
 
     public function indexDados(array $filtros, int $qnt = 10): LengthAwarePaginator
