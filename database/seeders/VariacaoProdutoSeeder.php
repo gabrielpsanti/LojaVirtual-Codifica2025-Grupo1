@@ -123,7 +123,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'produto_id' => 5,
                 'cor_id' => 1,
                 'tamanho_id' => $tamanhoId,
-                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/567830/23585_C003_1-POLO-BSC-COMF-PQT-FLEX-C--ETQ-BR-INV.jpg?v=639108139216800000',
+                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/570118-587-880/23628_C003_1-POLO-BSC-PREM-FIT-ALG-S-C.jpg?v=639135900681630000',
                 'estoque' => 150,
                 'preco' => 89.90,
             ]);
@@ -134,7 +134,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'produto_id' => 5,
                 'cor_id' => 7,
                 'tamanho_id' => $tamanhoId,
-                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/567830/23585_C003_1-POLO-BSC-COMF-PQT-FLEX-C--ETQ-BR-INV.jpg?v=639108139216800000',
+                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/568531-587-881/23582_C023_1-POLO-BSC-FIT-PQT-MOL-BORD-BR-INV.jpg?v=639122942640500000',
                 'estoque' => 14,
                 'preco' => 89.90,
             ]);
@@ -145,7 +145,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'produto_id' => 5,
                 'cor_id' => 4,
                 'tamanho_id' => $tamanhoId,
-                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/567566/23582_C017_1-POLO-BSC-FIT-PQT-MOL-BORD-BR-INV.jpg?v=639108126339000000',
+                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/568527-587-881/23582_C017_1-POLO-BSC-FIT-PQT-MOL-BORD-BR-INV.jpg?v=639122942533370000',
                 'estoque' => 150,
                 'preco' => 89.90,
             ]);
@@ -156,7 +156,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'produto_id' => 5,
                 'cor_id' => 6,
                 'tamanho_id' => $tamanhoId,
-                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/567562/23582_C014_1-POLO-BSC-FIT-PQT-MOL-BORD-BR-INV.jpg?v=639108126266800000',
+                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/568523-587-881/23582_C014_1-POLO-BSC-FIT-PQT-MOL-BORD-BR-INV.jpg?v=639122942400370000',
                 'estoque' => 150,
                 'preco' => 89.90,
             ]);
@@ -167,7 +167,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'produto_id' => 5,
                 'cor_id' => 3,
                 'tamanho_id' => $tamanhoId,
-                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/567558/23582_C009_1-POLO-BSC-FIT-PQT-MOL-BORD-BR-INV.jpg?v=639108126145770000',
+                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/568519-587-881/23582_C009_1-POLO-BSC-FIT-PQT-MOL-BORD-BR-INV.jpg?v=639122942292200000',
                 'estoque' => 150,
                 'preco' => 89.90,
             ]);
@@ -178,7 +178,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'produto_id' => 5,
                 'cor_id' => 8,
                 'tamanho_id' => $tamanhoId,
-                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/567838/23585_C055_1-POLO-BSC-COMF-PQT-FLEX-C--ETQ-BR-INV.jpg?v=639108139277700000',
+                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/536656-587-880/22972_C055_1-POLO-BSC-FIT-MSC-C--PLC-BR.jpg?v=638917371206930000',
                 'estoque' => 150,
                 'preco' => 89.90,
             ]);
@@ -211,7 +211,7 @@ class VariacaoProdutoSeeder extends Seeder
                 'produto_id' => 7,
                 'cor_id' => 1,
                 'tamanho_id' => $tamanhoId,
-                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/568287/23499_C003_1-CCOL-SLIM-ESCURO.jpg?v=639117837064570000',
+                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/566785/23482_C003_1-CFSH-CHI-NEW-FLEX-C--PL.jpg?v=639102240375830000',
                 'estoque' => 36,
                 'preco' => 179.90,
             ]);
@@ -374,12 +374,12 @@ class VariacaoProdutoSeeder extends Seeder
 
 
             //CALÇA SLIM
-            //PRETO
+            //AZUL MARINHO
             VariacaoProduto::create([
                 'produto_id' => 12,
                 'cor_id' => 3,
                 'tamanho_id' => $tamanhoId,
-                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/568287/23499_C003_1-CCOL-SLIM-ESCURO.jpg?v=639117837064570000',
+                'imagem' => 'https://taco.vtexassets.com/arquivos/ids/567260/22595_C009_1-CCOL-CHI-BLS-FACA.jpg?v=639108081100000000',
                 'estoque' => 150,
                 'preco' => 179.90,
             ]);

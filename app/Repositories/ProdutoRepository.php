@@ -68,7 +68,8 @@ class ProdutoRepository
     public function getModelos(): Collection
     {
         return Modelo::query()
+            ->with('categoria:id_categoria,nome')
             ->orderBy('nome')
-            ->get(['id_modelo', 'nome']);
+            ->get(['id_modelo', 'nome', 'categoria_id']);
     }
 }
