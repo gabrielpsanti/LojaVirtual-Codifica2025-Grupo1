@@ -36,11 +36,17 @@
                     <tbody class="divide-y divide-slate-300">
                         @forelse ($maisVendidos as $item)
                             <tr class="hover:bg-slate-100">
-                                <td class="px-6 py-4 text-sm font-semibold text-slate-800">#{{ $item->ranking }}</td>
+                                <td class="px-6 py-4 text-sm font-semibold text-slate-800">
+                                    <a href="{{ route('admin.variacoes.show', $item->variacao) }}" class="block w-full h-full hover:underline">
+                                        #{{ $item->ranking }}
+                                    </a>
+                                </td>
                                 <td class="px-6 py-4 text-sm text-slate-700">
-                                    {{ $item->variacao?->produto?->nome ?? 'Produto removido' }}
-                                    | {{ $item->variacao?->cor?->nome ?? 'Cor removida' }}
-                                    | {{ $item->variacao?->tamanho?->nome ?? 'Tamanho removido' }}
+                                    <a href="{{ route('admin.variacoes.show', $item->variacao) }}" class="block w-full h-full hover:underline">
+                                        {{ $item->variacao?->produto?->nome ?? 'Produto removido' }}
+                                        | {{ $item->variacao?->cor?->nome ?? 'Cor removida' }}
+                                        | {{ $item->variacao?->tamanho?->nome ?? 'Tamanho removido' }}
+                                    </a>
                                 </td>
                             </tr>
                         @empty
@@ -81,12 +87,16 @@
                         @forelse ($variacoesEstoqueBaixo as $variacao)
                             <tr class="hover:bg-slate-100">
                                 <td class="px-6 py-4 text-sm text-slate-700">
-                                    {{ $variacao->produto?->nome ?? 'Produto removido' }}
-                                    | {{ $variacao->cor?->nome ?? 'Cor removida' }}
-                                    | {{ $variacao->tamanho?->nome ?? 'Tamanho removido' }}
+                                    <a href="{{ route('admin.variacoes.show', $variacao) }}" class="block w-full h-full hover:underline">
+                                        {{ $variacao->produto?->nome ?? 'Produto removido' }}
+                                        | {{ $variacao->cor?->nome ?? 'Cor removida' }}
+                                        | {{ $variacao->tamanho?->nome ?? 'Tamanho removido' }}
+                                    </a>
                                 </td>
                                 <td class="px-6 py-4 text-sm font-semibold text-red-600">
-                                    {{ $variacao->estoque }}
+                                    <a href="{{ route('admin.variacoes.show', $variacao) }}" class="block w-full h-full hover:underline text-red-600">
+                                        {{ $variacao->estoque }}
+                                    </a>
                                 </td>
                             </tr>
                         @empty
@@ -103,7 +113,7 @@
                                 <td colspan="2" class="text-center p-4">
                                     <a href=""
                                         class="inline-flex items-center rounded-xl bg-slate-800 px-4 py-1 text-sm font-semibold text-white hover:bg-slate-700">
-                                        Ver lista completa
+                                        Ver lista completa (em breve)
                                     </a>
                                 </td>
                             </tr>

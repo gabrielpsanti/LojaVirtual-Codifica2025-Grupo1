@@ -24,7 +24,7 @@ class ModeloRequest extends FormRequest
                 'max:255',
                 Rule::unique('modelos', 'nome')
                     ->where(fn($query) => $query->where('categoria_id', $this->input('categoria_id')))
-                    ->ignore($modelo->id_modelo, 'id_modelo'),
+                    ->ignore($modelo?->id_modelo, 'id_modelo'),
             ],
             'categoria_id' => ['required', 'integer', 'exists:categorias,id_categoria'],
         ];

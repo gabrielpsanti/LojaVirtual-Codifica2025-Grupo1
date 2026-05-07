@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\MaisVendidoRepository;
+use App\Repositories\MaisVendidosRepository;
 
 class MaisVendidoController extends Controller
 {
     public function __construct(
-        private MaisVendidoRepository $maisVendidoRepository
+        private MaisVendidosRepository $maisVendidosRepository
     ) {}
 
     public function index()
     {
-        $maisVendidos = $this->maisVendidoRepository->listarTodos();
+        $maisVendidos = $this->maisVendidosRepository->listarTodos();
 
         return view('pages.admin.mais_vendidos.index', compact('maisVendidos'));
     }

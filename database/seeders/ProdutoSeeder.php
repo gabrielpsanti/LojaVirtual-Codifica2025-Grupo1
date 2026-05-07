@@ -86,7 +86,7 @@ class ProdutoSeeder extends Seeder
                 'usuario_id' => 1,
                 'modelo_id' => 4,
                 'nome' => 'Camisa Polo',
-                'imagem_apresentacao' => 'https://taco.vtexassets.com/arquivos/ids/567558/23582_C009_1-POLO-BSC-FIT-PQT-MOL-BORD-BR-INV.jpg?v=639108126145770000',
+                'imagem_apresentacao' => 'https://taco.vtexassets.com/arquivos/ids/568523-587-880/23582_C014_1-POLO-BSC-FIT-PQT-MOL-BORD-BR-INV.jpg?v=639122942400370000',
                 'descricao' => fake()->text(260),
                 'faixa_etaria' => FaixaEtariaProduto::ADULTO->value,
                 'genero' => GeneroProduto::MASCULINO->value,

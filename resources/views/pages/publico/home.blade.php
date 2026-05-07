@@ -10,32 +10,28 @@
 </form>
 
 
-<h2>Mais vendidos</h2>
+@if ($maisVendidos->isNotEmpty())
+    <h2 class="text-center mb-4">Mais vendidos</h2>
+@endif
 
-<div class="produtos">
-    @forelse ($maisVendidos as $produto)
-        <a href="{{ route('publico.produtos.variacoes', $produto) }}">
-
+<div class="flex justify-center gap-6 mb-12">
+    @foreach($maisVendidos as $item)
+        <a href="{{ route('publico.produtos.variacoes', $item->variacao->produto) }}">
             <div class="produto-card">
-
-                @if (!empty($produto->imagem_apresentacao))
-                    <img src="{{ $produto->imagem_apresentacao }}" alt="{{ $produto->nome }}">
+                @if (!empty($item->variacao->produto->imagem_apresentacao))
+                    <img src="{{ $item->variacao->produto->imagem_apresentacao }}" alt="{{ $item->variacao->produto->nome }}" style="height: 220px;">
                 @else
                     <div>Sem imagem</div>
                 @endif
 
-                <p><strong>{{ $produto->nome }}</strong></p>
-                <p>Vendidos: {{ $produto->total_vendas }}</p>
-
+                <p><strong>{{ $item->variacao->produto->nome }}</strong></p>
+                <p>Vendidos: {{ $item->quantidade_vendas }}</p>
             </div>
-
         </a>
-    @empty
-        <p>Nenhum produto vendido ainda.</p>
-    @endforelse
+    @endforeach
 </div>
 
-<h1>Produtos</h1>
+<h1 class="text-3xl mb-8 font-bold text-center">Produtos</h1>
 
 <div class="grid grid-cols-4 gap-6">
     @forelse ($produtos as $produto)
