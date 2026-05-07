@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('titulo-aba', 'Loja Virtual')</title>
     @vite('resources/css/app.css')
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
 
@@ -107,29 +109,34 @@
     <header class="border-b shadow-sm">
         <div class="flex justify-between p-2 items-center max-w-6xl mx-auto">
 
-            <div class="flex gap-4">
+            <div class="flex gap-4 items-center">
                 <a href="{{ route('publico.home') }}">
-                    <span class="font-bold text-lg">LOGO</span>
+                    <span class="font-bold text-lg">LOJA DO IDCAP</span>
                 </a>
 
-                <a href="/produtos/masculinos" class="hover:underline">Masculino</a>
+                <a href="/produtos/masculinos" class="hover:underline text-blue-600 font-semibold"">Masculino</a>
 
                 <a href="/produtos/femininos" class="hover:underline text-pink-600 font-semibold">
                     Feminino
                 </a>
 
-                <a href="#" class="hover:underline">Kids</a>
-            </div>
 
-            <div class="flex max-w-6xl justify-between p-2">
+            <div class="flex gap-4 items-center ml-auto">
                 @if (auth('cliente')->check())
                     <div class="flex gap-4 items-center">
-                        <a class="font-semibold text-slate-800" href="{{ route('cliente.carrinho.index') }}">
-                            Carrinho
-                        </a>
-                        <p>Olá, <a href="{{ route('cliente.areaCliente') }}"
-                                class="text-bold text-slate-800 hover:text-slate-600">{{ auth('cliente')->user()->nome }}</a>
-                        </p>
+
+                            <p class="ml-150">
+                            Olá,
+                            <a href="{{ route('cliente.areaCliente') }}"
+                             class="text-bold text-slate-800 hover:text-slate-600">
+                             {{ auth('cliente')->user()->nome }}
+                                </a>
+
+                            <a class="font-semibold text-slate-800" href="{{ route('cliente.carrinho.index') }}">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                             </a>
+
+                                   </p>
                         <a class="font-semibold text-slate-800 text-lg" href="{{ route('cliente.logout') }}">
                             Sair
                         </a>
