@@ -56,7 +56,7 @@ git clone https://github.com/seu_usuario/LojaVirtual-Codifica2025.git
 ## 2. Entrar na Pasta do Projeto
 
 ```bash
-cd LojaVirtual-Codifica2025
+cd LojaVirtual-Codifica2025-Grupo1
 ```
 
 ---
@@ -208,8 +208,10 @@ O sistema possui CRUD completo para:
 
 - Produtos
 - Categorias
-- Usuários
-- Vendas
+- Cores
+- Tamanhos
+- Modelos
+- Variações de produtos
 
 ---
 
@@ -217,10 +219,8 @@ O sistema possui CRUD completo para:
 
 O projeto utiliza o sistema de agendamento de tarefas do Laravel. *
 
-Exemplo de utilização:
-- monitoramento de estoque baixo;
-- execução de tarefas automáticas;
-- atualizações programadas do sistema.
+Rotina implementada neste projeto:
+- atualização do ranking de mais vendidos (`mais-vendidos:atualizar`) a cada 10 minutos.
 
 Comando utilizado:
 
@@ -234,12 +234,17 @@ php artisan schedule:work
 
 Principais tabelas do sistema:
 
-- users
+- usuarios
 - produtos
 - categorias
+- modelos
+- cores
+- tamanhos
+- variacoes_produtos
 - vendas
-- itens_venda
-- estoque
+- carrinhos
+- carrinho_itens
+- mais_vendidos
 
 Relacionamentos:
 - um usuário pode realizar várias vendas;
