@@ -7,7 +7,7 @@ Desenvolvedores:
 
 # 🛒 Loja Virtual - Codifica2025
 
-Sistema de loja virtual desenvolvido em Laravel (PHP).  
+Sistema de loja virtual desenvolvido em Laravel (PHP).
 O projeto foi criado com foco na interação do usuário com a plataforma, permitindo navegação intuitiva, autenticação com diferentes níveis de acesso, gerenciamento de produtos, controle de estoque e registro de vendas.
 
 A aplicação possui dois perfis de usuários:
@@ -26,131 +26,80 @@ Além disso, o sistema conta com:
 
 ---
 
+# 🐳 Comece por aqui (Docker)
+
+O projeto roda 100% em containers — você **não precisa** instalar PHP, MySQL, Composer ou Node na máquina. Só Docker.
+
+| Quero... | Vá para |
+|---|---|
+| **Rodar pela primeira vez** (Windows / macOS / Linux) — instalar Docker e subir | [`docs/primeiros-passos.md`](./docs/primeiros-passos.md) |
+| Referência completa (comandos do dia a dia, phpMyAdmin, troubleshooting) | [`docs/desenvolvimento.md`](./docs/desenvolvimento.md) |
+| Preparar uma VPS Linux para deploy (Docker, Nginx, Certbot, firewall) | [`docs/preparar-producao.md`](./docs/preparar-producao.md) |
+| Fazer o deploy do projeto em servidor com HTTPS | [`docs/producao.md`](./docs/producao.md) |
+| Autorizar o servidor a clonar o repositório (Deploy Key ou PAT) | [`docs/acesso-github.md`](./docs/acesso-github.md) |
+
+---
+
 # 📋 Pré-requisitos
 
-- PHP >= 8.1
-- Composer >= 2.0
-- Node.js >= 18
-- NPM
-- Git
-- MySQL >= 8.0
+- **Docker Desktop** (Windows/macOS) ou **Docker Engine** (Linux) — única coisa que precisa instalar
+- **Git**
+
+Tudo o mais (PHP 8.4, MySQL 8, Composer, Node 20, Vite, Tailwind, phpMyAdmin) vem dentro dos containers.
 
 ---
 
 # ⚙️ Passo a passo da configuração
 
-Siga os passos abaixo para configurar o sistema localmente.
-
----
+> Detalhes, troubleshooting e instruções por sistema operacional em [`docs/primeiros-passos.md`](./docs/primeiros-passos.md).
 
 ## 1. Clonar o Repositório
 
-Clone este repositório em sua máquina local utilizando o comando:
-
 ```bash
-git clone https://github.com/seu_usuario/LojaVirtual-Codifica2025.git
-```
-
----
-
-## 2. Entrar na Pasta do Projeto
-
-```bash
+git clone https://github.com/seu_usuario/LojaVirtual-Codifica2025-Grupo1.git
 cd LojaVirtual-Codifica2025-Grupo1
 ```
 
----
-
-## 3. Configurar o Arquivo `.env`
-
-Copie o arquivo `.env.example` para `.env`:
+## 2. Configurar o Arquivo `.env`
 
 ```bash
 cp .env.example .env
 ```
 
-Depois, configure as variáveis do banco de dados no arquivo `.env`:
+Edite o `.env` e ajuste o bloco do banco para apontar para o container:
 
 ```env
 DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
+DB_HOST=mysql
 DB_PORT=3306
-DB_DATABASE=lojavirtual
-DB_USERNAME=root
-DB_PASSWORD=
+DB_DATABASE=loja
+DB_USERNAME=loja
+DB_PASSWORD=secret
 ```
 
----
-
-## 4. Instalar Dependências PHP
-
-Instale as dependências do projeto utilizando o Composer:
+## 3. Subir os containers
 
 ```bash
-composer install
+docker compose --profile dev up -d --build
 ```
 
----
+A primeira execução demora ~5 min (baixa imagens e instala dependências). Da segunda vez em diante, sobe em segundos.
 
-## 5. Instalar Dependências Front-end
+## 4. Instalar dependências e preparar o Laravel
 
 ```bash
-npm install
+docker compose exec app composer install
+docker compose exec app php artisan key:generate
+docker compose exec app php artisan migrate --seed
+docker compose exec app php artisan storage:link
+docker compose exec app npm install
+docker compose exec app npm run build
 ```
 
----
+## 5. Acessar
 
-## 6. Gerar Chave da Aplicação
-
-```bash
-php artisan key:generate
-```
-
----
-
-## 7. Executar as Migrações
-
-Execute as migrations para criar as tabelas no banco de dados:
-
-```bash
-php artisan migrate
-```
-
----
-
-## 8. Executar Seeders (Opcional)
-
-Caso existam seeders configurados no projeto:
-
-```bash
-php artisan db:seed
-```
-
----
-
-## 9. Executar o Projeto
-
-Inicie o servidor local com:
-
-```bash
-php artisan serve
-```
-
-O sistema estará disponível em:
-
-```bash
-http://127.0.0.1:8000
-```
-
----
-
-## 10. Executar o Vite
-
-Para carregar os arquivos CSS e JavaScript:
-
-```bash
-npm run dev
-```
+- **Aplicação:** http://localhost
+- **phpMyAdmin** (admin do banco): http://localhost:8080 — usuário: `loja` / senha: `secret`
 
 ---
 
@@ -187,12 +136,12 @@ O administrador possui acesso ao painel `/admin`, onde pode:
 
 # 📦 Gerenciamento de Estoque
 
-O sistema possui controle automático e manual de estoque. *
+O sistema possui controle automático e manual de estoque.
 
 ## Controle Automático
 Sempre que uma venda é realizada:
-- o estoque do produto é atualizado automaticamente; *
-- a quantidade disponível é reduzida em tempo real. *
+- o estoque do produto é atualizado automaticamente;
+- a quantidade disponível é reduzida em tempo real.
 
 ## Controle Manual
 O administrador pode:
@@ -217,15 +166,15 @@ O sistema possui CRUD completo para:
 
 # ⏰ Schedule do Laravel
 
-O projeto utiliza o sistema de agendamento de tarefas do Laravel. *
+O projeto utiliza o sistema de agendamento de tarefas do Laravel.
 
 Rotina implementada neste projeto:
 - atualização do ranking de mais vendidos (`mais-vendidos:atualizar`) a cada 10 minutos.
 
-Comando utilizado:
+Comando utilizado (dentro do container):
 
 ```bash
-php artisan schedule:work
+docker compose exec app php artisan schedule:work
 ```
 
 ---
@@ -270,19 +219,25 @@ Utilizado para organização e divisão de tarefas do grupo.
 # 🚀 Tecnologias Utilizadas
 
 ## Backend
-- PHP
-- Laravel
+- PHP 8.4
+- Laravel 13
 
 ## Frontend
 - HTML5
 - CSS3
 - JavaScript
-- Tailwind CSS
-- Vite
+- Tailwind CSS 4
+- Vite 8
 - Axios
 
 ## Banco de Dados
-- MySQL
+- MySQL 8
+
+## Infraestrutura
+- Docker
+- Docker Compose v2
+- Nginx
+- phpMyAdmin (somente em desenvolvimento)
 
 ## Ferramentas
 - Git
@@ -305,6 +260,7 @@ Durante o desenvolvimento do projeto foram aplicados conceitos como:
 - Relacionamento entre tabelas
 - Versionamento com Git
 - Task Scheduling
+- Containerização com Docker
 - Desenvolvimento Full Stack
 - Trabalho em equipe
 
@@ -313,16 +269,3 @@ Durante o desenvolvimento do projeto foram aplicados conceitos como:
 # 📄 Licença
 
 Projeto desenvolvido para fins acadêmicos e educacionais.
-
-
-
-
-
-
-
-
-
-
-
-
-Projeto com fins educacionais.
